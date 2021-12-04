@@ -10,7 +10,6 @@ df.drop(['channelId', 'tags', 'thumbnail_link', 'comments_disabled', 'ratings_di
         inplace=True)
 
 def caps_percent(title):
-    # title = title.replace(" ", "")
     if len(title) <= 0:
         return 0
     s = 0
@@ -21,7 +20,6 @@ def caps_percent(title):
 
 
 df['percent_caps'] = df.title.apply(caps_percent)
-df['len_title'] = df.title.apply(len)
 
 plt.figure(figsize=[11, 9])
 plt.hist(df['percent_caps'], color='orange', rwidth=0.9)
