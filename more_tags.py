@@ -4,10 +4,12 @@ import matplotlib.pyplot as plt
 
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
+# Mostramos los tags con mas visitas en cada pais
+
 def get_tags(country):
     r_csv = 'data/' + country + '_youtube_trending_data.csv'
 
-    df = pd.read_csv(r_csv, engine='python', error_bad_lines=False)
+    df = pd.read_csv(r_csv)
 
     df = df[['tags', 'view_count']]
     mask = (df.view_count <= 0)
@@ -28,9 +30,9 @@ def get_tags(country):
     print(df[0:10])
 
 
-get_tags(countries[10])
+#get_tags(countries[10])
 
-""""
+
 if __name__ == "__main__":
     # Arg Parser
     import argparse
@@ -42,6 +44,5 @@ if __name__ == "__main__":
     # END OF ARGUMENT PARSER
     country = args.regionCode.upper()
 
-    get_likes(country)
-"""
+    get_tags(country)
 
