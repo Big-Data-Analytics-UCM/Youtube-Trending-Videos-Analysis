@@ -4,17 +4,18 @@ import matplotlib.pyplot as plt
 
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
-def get_likes(country):
+def get_view_count(country):
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
     ruta_json = 'data/' + country + '_category_id.json'
 
     df = pd.read_csv(ruta_csv)
-    df = df[['title', 'likes']]
-    mask = (df.likes <= 0)
+    df = df[['title', 'view_count']]
+    mask = (df.view_count <= 0)
     df = df.loc[~mask]
 
-    df = df.sort_values(by=['likes'], ascending=False).drop_duplicates(subset=['title'])
-    print(df.to_string(index = False))
+    df = df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['title'])
+    res = df.head(10)
+    print(res.to_string(index = False))
 
 
 if __name__ == "__main__":
@@ -28,4 +29,4 @@ if __name__ == "__main__":
     # END OF ARGUMENT PARSER
     region = args.regionCode.upper()
 
-    get_likes(region)
+    get_view_count(region)
