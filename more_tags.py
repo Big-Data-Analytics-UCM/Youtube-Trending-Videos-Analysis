@@ -7,7 +7,7 @@ countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 def get_tags(country):
     r_csv = 'data/' + country + '_youtube_trending_data.csv'
 
-    df = pd.read_csv(r_csv)
+    df = pd.read_csv(r_csv, engine='python', error_bad_lines=False)
 
     df = df[['tags', 'view_count']]
     mask = (df.view_count <= 0)
@@ -24,11 +24,11 @@ def get_tags(country):
                 dic[tag] += row['view_count']
 
     df = pd.DataFrame([[key, dic[key]] for key in dic.keys()], columns=['tags', 'view_count'])
-    df = df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['tags'])
-    print(df)
+    df = df.sort_values(by=['view_count'], ascending=False)
+    print(df[0:10])
+
 
 get_tags(countries[10])
-
 
 """"
 if __name__ == "__main__":
