@@ -14,21 +14,17 @@ def get_likes(country):
     mask = (df.view_count <= 0)
     df = df.loc[~mask]
 
-    """""
-    with open(r_json) as json_file:
-        data = json.load(json_file)
-        tag_dict = dict()
-        for item in data['items']:
-            index = int(item['id'])
-            tag_dict[index] = item['etag']
-    df = df.replace({"tagId": tag_dict})
-    """
-
-    df = df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['tags'])
+    df['tags'] = df['tags'].str.split('|')
     print(df)
 
 
+    #df = df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['tags'])
+    #print(df)
 
+get_likes(countries[10])
+
+
+""""
 if __name__ == "__main__":
     # Arg Parser
     import argparse
@@ -41,4 +37,5 @@ if __name__ == "__main__":
     country = args.regionCode.upper()
 
     get_likes(country)
+"""
 
