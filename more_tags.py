@@ -15,7 +15,14 @@ def get_likes(country):
     df = df.loc[~mask]
 
     df['tags'] = df['tags'].str.split('|')
-    print(df)
+    #print(df)
+
+    dic = {}
+    for line in df:
+        for tag in line['tags']:
+            dic[tag] = dic[tag] + line['view_count']
+
+    print(dic)
 
 
     #df = df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['tags'])
