@@ -1,28 +1,27 @@
 import json
-import pandas as pan
+import pandas as pd
 import matplotlib.pyplot as plt
 
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
 def get_tags(country):
     r_csv = 'data/' + country + '_youtube_trending_data.csv'
-    r_json = 'data/' + country + '_category_id.json'
 
-    df = pan.read_csv(r_csv)
+    df = pd.read_csv(r_csv, engine='python', error_bad_lines=False)
 
     df = df[['tags', 'view_count']]
     mask = (df.view_count <= 0)
     df = df.loc[~mask]
 
     df['tags'] = df['tags'].str.split('|')
-    #print(df)
 
     dic = {}
-    df = [x for x in df[1:] if str(x) != 'tags']
-    df = [x for x in df[1:] if str(x) != 'view_count']
-    for line in df:
-        for tag in line['tags']:
-            dic[tag] = dic[tag] + line['view_count']
+    for index, row in df.iterrows():
+        for tag in row['tags']:
+            if tag not in dic.keys():
+                dic[tag] = row['view_count']
+            else:
+                dic[tag] += row['view_count']
     print(dic)
 
 
