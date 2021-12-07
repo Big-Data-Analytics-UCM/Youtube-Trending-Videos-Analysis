@@ -27,9 +27,7 @@ def get_likes(country):
     df = df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['tags'])
     print(df)
 
-get_likes(countries[10])
 
-"""""
 if __name__ == "__main__":
     # Arg Parser
     import argparse
@@ -43,4 +41,3 @@ if __name__ == "__main__":
 
     get_likes(country)
 
-"""
