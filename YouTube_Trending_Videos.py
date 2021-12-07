@@ -18,8 +18,10 @@ def argument_parser():
 
 def menu_options():
     options = dict()
-    options.update({'1': "Gráfica de categorías en tendencia por país"})
-    options.update({'2': "Gráfica de categorías en tendencia en el mundo"})
+    options.update({'1': "Gráfica de categorías en tendencia"})
+    options.update({'2': "Gráfica para analizar la longitud del título del video"})
+    options.update({'3': "Gráfica para analizar la hora de publicación de un video por frecuencia"})
+    options.update({'4': "Gráfica para analizar la hora de publicación de un video por likes"})
     # options['1'] = "Media de visitas por mes."
     # options['2'] = "Media de visitas por año."
     # options['3'] = "Categoria con mas videos."
@@ -38,8 +40,10 @@ def menu_options():
 
 def menu_actions():
     actions = dict()
-    actions.update({'1': grafico_categoria_pais})
-    actions.update({'2': grafico_categoria_mundial})
+    actions.update({'1': grafico_categoria})
+    actions.update({'2': grafico_long_titulo})
+    actions.update({'3': grafico_hora_publicacion_frecuencia})
+    actions.update({'4': grafico_hora_publicacion_visitas})
     # actions['1'] = averageVisitsPerMonth
     # actions['2'] = averageVisitsPerYear
     # actions['3'] = categoryWithMoreVideos
@@ -54,22 +58,50 @@ def menu_actions():
     actions['0'] = exit_program
     return actions
 
-
-def grafico_categoria_pais():
-    pais = str(input("Indique el código del país: "))
-    # os.system("python3 liveData.py {COUNTRY}".format(COUNTRY=pais))
-    # path = os.path.join(PROJECT_PATH, "category_frequency.py")
+def grafico_categoria():
+    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
     path = "category_frequency.py"
-    # cmd = "spark-submit \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     os.system(cmd)
 
-def grafico_categoria_mundial():
-    # path = os.path.join(PROJECT_PATH, "scripts", "topCategories.py")
-    path = os.path.join(PROJECT_PATH, "category_frequency.py")
-    # cmd = "spark-submit \"{PATH}\" -m graph ALL".format(PATH=path)
-    cmd = "python3 \"{PATH}\" -m graph ALL".format(PATH=path)
-    os.system(cmd)
+# def grafico_categoria_pais():
+#     pais = str(input("Indique el código del país: "))
+#     # os.system("python3 liveData.py {COUNTRY}".format(COUNTRY=pais))
+#     # path = os.path.join(PROJECT_PATH, "category_frequency.py")
+#     path = "category_frequency.py"
+#     # cmd = "spark-submit \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     os.system(cmd)
+
+#
+# def grafico_categoria_mundial():
+#     # path = os.path.join(PROJECT_PATH, "scripts", "topCategories.py")
+#     path = os.path.join(PROJECT_PATH, "category_frequency.py")
+#     # cmd = "spark-submit \"{PATH}\" -m graph ALL".format(PATH=path)
+#     cmd = "python3 \"{PATH}\" -m graph ALL".format(PATH=path)
+#     os.system(cmd)
+
+def grafico_long_titulo():
+    pass
+
+
+def grafico_hora_publicacion_frecuencia():
+    pass
+
+
+def grafico_hora_publicacion_visitas():
+    pass
+    #pais = str(input("Indique el código del país: "))
+    # os.system("python3 liveData.py {COUNTRY}".format(COUNTRY=pais))
+    # path = os.path.join(PROJECT_PATH, "category_frequency.py")
+    #path = "category_frequency.py"
+    # cmd = "spark-submit \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    #cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    #os.system(cmd)
+
+
+
+
 
 def exit_program():
     exit_msg = "Saliendo..."

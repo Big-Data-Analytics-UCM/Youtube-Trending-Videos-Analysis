@@ -25,13 +25,11 @@ def get_categories(country):
     return df
 
 def generar_grafica(df, region):
-    if region == "GLOBAL":
-        for country in countries:
-            df.country.categoryId.value_counts(normalize=True).plot.bar(figsize=(15, 8), rot=25, color='orange', ec='k')
-    df.categoryId.value_counts(normalize=True).plot.bar(figsize=(15, 8), rot=25, color='orange', ec='k')
+    df.categoryId.value_counts(normalize=True).plot.bar(figsize=(15, 10), rot=25, color='orange', ec='k')
     plt.xlabel("Video Category")
     plt.ylabel("Relative frequency of videos")
-    plt.title("Video categories by relative frequency")
+    plt.title("Video categories by relative frequency in")
+    plt.title("Video categories by relative frequency ")
     plt.savefig("category_frequency_" + region + ".png", dpi=100)
 
 
@@ -39,13 +37,13 @@ def grafica_pais(country):
     category_df = get_categories(country)
     generar_grafica(category_df, country)
 
+
 def grafica_mundial():
-    categories_per_country_df = pd.DataFrame
+    categories_per_country_df = pd.DataFrame()
     for country in countries:
-        # categories_per_country_df.append(get_categories(country), ignore_index=True)
-        categories_per_country_df.loc()
-    print(categories_per_country_df)
-    # generar_grafica(categories_per_country_df, "GLOBAL")
+        categories_per_country_df = categories_per_country_df.append(get_categories(country), ignore_index=True)
+
+    generar_grafica(categories_per_country_df, "GLOBAL")
 
 
 if __name__ == "__main__":
@@ -54,15 +52,15 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     helpRegionCode = 'Region code for the youtube videos, by default ALL.\nPossible regions:\nCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
-    parser.add_argument("regionCode", help=helpRegionCode, default="ALL")
-    parser.add_argument("-m", "--mode", help='console or graph, by default is console', default="console")
+    parser.add_argument("regionCode", help=helpRegionCode, default="GLOBAL")
+    parser.add_argument("-m", "--mode", help='console or graph, by default is graph', default="graph")
     args = parser.parse_args()
     # END OF ARGUMENT PARSER
 
     region = args.regionCode.upper()
     mode = args.mode.upper()
 
-    if region == "ALL":
+    if region == "GLOBAL":
         grafica_mundial()
     else:
         grafica_pais(region)
