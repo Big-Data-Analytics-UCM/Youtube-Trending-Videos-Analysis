@@ -17,9 +17,9 @@ def published_at_frequency(country):
     df.insert(loc=3, column='published_hour', value=df.publishedAt.dt.hour)
 
     df.published_hour.value_counts(normalize=True).plot.bar(figsize=[15, 8], rot=0, color='orange', ec='k')
-    plt.xlabel("Published Date")
+    plt.xlabel("Published Hour")
     plt.ylabel("Relative frequency of videos")
-    plt.title("Published Date by relative frequency")
+    plt.title("Published Hour by relative frequency")
     plt.savefig("published_at_frequency_" + country + ".png", dpi=100)
 
 
