@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
-def get_likes(country):
+def get_tags(country):
     r_csv = 'data/' + country + '_youtube_trending_data.csv'
     r_json = 'data/' + country + '_category_id.json'
 
@@ -15,13 +15,20 @@ def get_likes(country):
     df = df.loc[~mask]
 
     df['tags'] = df['tags'].str.split('|')
-    print(df)
+    #print(df)
+
+    dic = {}
+    for line in df:
+        for tag in line['tags']:
+            dic[tag] = dic[tag] + line['view_count']
+
+    print(dic)
 
 
     #df = df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['tags'])
     #print(df)
 
-get_likes(countries[10])
+get_tags(countries[10])
 
 
 """"
