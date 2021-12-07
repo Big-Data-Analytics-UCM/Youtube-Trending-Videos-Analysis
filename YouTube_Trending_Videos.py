@@ -20,7 +20,6 @@ def menu_options():
     options = dict()
     options.update({'1': "Gráfica de categorías en tendencia por país"})
     options.update({'2': "Gráfica de categorías en tendencia en el mundo"})
-    options.update({'3': "Horas de subida con más visitas"})
     # options['1'] = "Media de visitas por mes."
     # options['2'] = "Media de visitas por año."
     # options['3'] = "Categoria con mas videos."
@@ -41,7 +40,6 @@ def menu_actions():
     actions = dict()
     actions.update({'1': grafico_categoria_pais})
     actions.update({'2': grafico_categoria_mundial})
-    actions.update({'3': hoursWithMoreVisits})
     # actions['1'] = averageVisitsPerMonth
     # actions['2'] = averageVisitsPerYear
     # actions['3'] = categoryWithMoreVideos
@@ -72,18 +70,6 @@ def grafico_categoria_mundial():
     # cmd = "spark-submit \"{PATH}\" -m graph ALL".format(PATH=path)
     cmd = "python3 \"{PATH}\" -m graph ALL".format(PATH=path)
     os.system(cmd)
-
-def hoursWithMoreVisits():
-    pass
-    #pais = str(input("Indique el código del país: "))
-    # os.system("python3 liveData.py {COUNTRY}".format(COUNTRY=pais))
-    # path = os.path.join(PROJECT_PATH, "category_frequency.py")
-    #path = "category_frequency.py"
-    # cmd = "spark-submit \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    #cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    #os.system(cmd)
-
-
 
 
 

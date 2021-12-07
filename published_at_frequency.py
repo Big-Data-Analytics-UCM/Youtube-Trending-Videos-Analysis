@@ -17,7 +17,6 @@ def published_at_frequency(country):
     df.insert(loc=3, column='published_date', value=df.publishedAt.dt.date)
     df.insert(loc=4, column='published_month', value=df.publishedAt.dt.month_name())
     df.insert(loc=5, column='published_day', value=df.publishedAt.dt.day_name())
-
     df.insert(loc=10, column='trending_date', value=df.trendingAt.dt.date)
     df.insert(loc=11, column='trending_month', value=df.trendingAt.dt.month_name())
     df.insert(loc=12, column='trending_day', value=df.trendingAt.dt.day_name())
@@ -32,3 +31,5 @@ def published_at_frequency(country):
     plt.ylabel("Relative frequency of videos")
     plt.title("Published Date by relative frequency")
     plt.savefig("published_at_frequency_" + country + ".png", dpi=100)
+
+
