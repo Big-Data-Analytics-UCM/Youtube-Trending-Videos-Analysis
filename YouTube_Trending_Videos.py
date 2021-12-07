@@ -64,6 +64,12 @@ def grafico_categoria():
     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     os.system(cmd)
 
+def grafico_long_titulo():
+    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+    path = "title_length_analysis.py"
+    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    os.system(cmd)
+
 # def grafico_categoria_pais():
 #     pais = str(input("Indique el código del país: "))
 #     # os.system("python3 liveData.py {COUNTRY}".format(COUNTRY=pais))
@@ -81,8 +87,7 @@ def grafico_categoria():
 #     cmd = "python3 \"{PATH}\" -m graph ALL".format(PATH=path)
 #     os.system(cmd)
 
-def grafico_long_titulo():
-    pass
+
 
 
 def grafico_hora_publicacion_frecuencia():
