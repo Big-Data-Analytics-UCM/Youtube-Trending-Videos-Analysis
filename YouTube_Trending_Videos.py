@@ -10,14 +10,16 @@ API_KEY = "AIzaSyCXwEu_N5gbvyD97-uVQCH7FyQq0LmtNMo"
 def argument_parser():
     parser = argparse.ArgumentParser(description='Conoce el algoritmo de YouTube y aumenta las probabilidades de'
                                      'conseguir que tu video se vuelva viral.', prog='YouTube_Trending_Videos')
-    parser.add_argument('--region', help='Regions: IN (India), US (EEUU), GB (Gran Bretaña),DE (Alemania), '
-                                         'CA (Canadá), FR (Francia), RU (Rusia), BR (Brasil), MX (Mexico), KR (Korea) '
-                                         'y JP (Japón)', default="ALL")
+    # parser.add_argument('--region', help='Regions: IN (India), US (EEUU), GB (Gran Bretaña),DE (Alemania), '
+    #                                     'CA (Canadá), FR (Francia), RU (Rusia), BR (Brasil), MX (Mexico), KR (Korea) '
+    #                                     'y JP (Japón)', default="ALL")
     return parser.parse_args()
 
 
 def menu_options():
     options = dict()
+    options.update({'1': "Gráfica de categorías en tendencia por país"})
+    options.update({'2': "Gráfica de categorías en tendencia en el mundo"})
     # options['1'] = "Media de visitas por mes."
     # options['2'] = "Media de visitas por año."
     # options['3'] = "Categoria con mas videos."
@@ -25,16 +27,19 @@ def menu_options():
     # options['5'] = "Dia de la semana con mas visitas."
     # options['6'] = "Videos con mayor cantidad de likes."
     # options['7'] = "Videos con mayor cantidad de comentarios."
-    options['8'] = "Gráfica de categorías por país."
+    # options['8'] = "Gráfica de categorías en tendencia por país."
     # options['9'] = "Gráfica de categorias mundial."
     # options['10'] = "Cuadro de categorias por país."
     # options['11'] = "Cuadro de categorias mundial."
-    options['0'] = "Exit"
+    # options['0'] = "Exit"
+    options.update({'0': "Exit"})
     return options
 
 
 def menu_actions():
     actions = dict()
+    actions.update({'1': grafico_categoria_pais})
+    actions.update({'2': grafico_categoria_mundial})
     # actions['1'] = averageVisitsPerMonth
     # actions['2'] = averageVisitsPerYear
     # actions['3'] = categoryWithMoreVideos
@@ -42,7 +47,7 @@ def menu_actions():
     # actions['5'] = weekdayWithMoreVisits
     # actions['6'] = videosWithMoreLikes
     # actions['7'] = videosWithMoreComments
-    actions['8'] = grafico_categoria_pais
+    # actions['8'] = grafico_categoria_pais
     # actions['9'] = categoryGraphWorldwide
     # actions['10'] = showCategoriesByCountry
     # actions['11'] = showCategoriesWorldwide
@@ -62,7 +67,8 @@ def grafico_categoria_pais():
 def grafico_categoria_mundial():
     # path = os.path.join(PROJECT_PATH, "scripts", "topCategories.py")
     path = os.path.join(PROJECT_PATH, "category_frequency.py")
-    cmd = "spark-submit \"{PATH}\" -m graph ALL".format(PATH=path)
+    # cmd = "spark-submit \"{PATH}\" -m graph ALL".format(PATH=path)
+    cmd = "python3 \"{PATH}\" -m graph ALL".format(PATH=path)
     os.system(cmd)
 
 def exit_program():
@@ -86,7 +92,7 @@ def menu(options):
         print(code, value)
 
     # Ask for an option
-    option = input("select option: ")
+    option = str(input("select option: "))
 
     # Verify if its a valid option and execute it
     if option in options.keys():
@@ -99,8 +105,20 @@ def menu(options):
 
 
 if __name__ == "__main__":
+    welcome = """
+         ___      ___                ._____________.
+         \  \    /  /                |_____.  .____|
+          \  \  /  /                       |  |
+           \  \/  /.________.  .__.  .__.  |  |  .__.  .__.  .________.  .________.
+            \    / |   __   |  |  |  |  |  |  |  |  |  |  |  |        |  |  ._____|                
+             |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |   O   /   |  |__.
+             |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |       \   |  .__|
+             |  |  |  |__|  |  |  |__|  |  |  |  |  |__|  |  |   O    |  |  |_____.
+             |__|  |________|  |________|  |__|  |________|  |________|  |________|
+    """
     args = argument_parser()
     # os.system("python3 liveData.py {COUNTRY}".format(COUNTRY=args.regionCode.upper()))
-    options = menu_options()
-    while menu(options):
+    print(welcome)
+    options_dict = menu_options()
+    while menu(options_dict):
         pass

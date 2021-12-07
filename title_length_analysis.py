@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("BR_youtube_trending_data.csv")
+df = pd.read_csv("data/BR_youtube_trending_data.csv")
 
 mask = (df.view_count <= 0)
 df = df.loc[~mask]
