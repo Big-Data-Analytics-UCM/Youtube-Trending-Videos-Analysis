@@ -70,22 +70,6 @@ def grafico_long_titulo():
     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     os.system(cmd)
 
-# def grafico_categoria_pais():
-#     pais = str(input("Indique el código del país: "))
-#     # os.system("python3 liveData.py {COUNTRY}".format(COUNTRY=pais))
-#     # path = os.path.join(PROJECT_PATH, "category_frequency.py")
-#     path = "category_frequency.py"
-#     # cmd = "spark-submit \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     os.system(cmd)
-
-#
-# def grafico_categoria_mundial():
-#     # path = os.path.join(PROJECT_PATH, "scripts", "topCategories.py")
-#     path = os.path.join(PROJECT_PATH, "category_frequency.py")
-#     # cmd = "spark-submit \"{PATH}\" -m graph ALL".format(PATH=path)
-#     cmd = "python3 \"{PATH}\" -m graph ALL".format(PATH=path)
-#     os.system(cmd)
 
 
 
