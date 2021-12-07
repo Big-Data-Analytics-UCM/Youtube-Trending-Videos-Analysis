@@ -75,7 +75,10 @@ def grafico_long_titulo():
 
 
 def grafico_hora_publicacion_frecuencia():
-    pass
+    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+    path = "published_at_frequency.py"
+    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    os.system(cmd)
 
 
 def grafico_hora_publicacion_visitas():
