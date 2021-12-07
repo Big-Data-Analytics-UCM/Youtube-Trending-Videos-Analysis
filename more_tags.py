@@ -18,10 +18,11 @@ def get_tags(country):
     #print(df)
 
     dic = {}
+    df = [x for x in df[1:] if str(x) != 'tags']
+    df = [x for x in df[1:] if str(x) != 'view_count']
     for line in df:
         for tag in line['tags']:
             dic[tag] = dic[tag] + line['view_count']
-
     print(dic)
 
 
