@@ -37,11 +37,12 @@ def grafica_pais(country):
     category_df = get_categories(country)
     generar_grafica(category_df, country)
 
+
 def grafica_mundial():
     categories_per_country_df = pd.DataFrame()
     for country in countries:
         categories_per_country_df = categories_per_country_df.append(get_categories(country), ignore_index=True)
-    
+
     generar_grafica(categories_per_country_df, "GLOBAL")
 
 
@@ -51,15 +52,15 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     helpRegionCode = 'Region code for the youtube videos, by default ALL.\nPossible regions:\nCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
-    parser.add_argument("regionCode", help=helpRegionCode, default="ALL")
-    parser.add_argument("-m", "--mode", help='console or graph, by default is console', default="console")
+    parser.add_argument("regionCode", help=helpRegionCode, default="GLOBAL")
+    parser.add_argument("-m", "--mode", help='console or graph, by default is graph', default="graph")
     args = parser.parse_args()
     # END OF ARGUMENT PARSER
 
     region = args.regionCode.upper()
     mode = args.mode.upper()
 
-    if region == "ALL":
+    if region == "GLOBAL":
         grafica_mundial()
     else:
         grafica_pais(region)
