@@ -14,9 +14,19 @@ def get_comment_count(country):
     df = df.loc[~mask]
 
     df = df.sort_values(by=['comment_count'], ascending=False).drop_duplicates(subset=['title'])
-    res = df.head(100)
-    print(res.to_string(index = False))
+    return df.head(10)
 
+def get_local(region):
+    print(get_comment_count(region).to_string(index = False))
+
+def get_global():
+    globalDf = pd.DataFrame()
+    for reg in countries:
+        regionDf = get_comment_count(reg)
+        regionDf = regionDf.assign(region = [reg, reg, reg, reg, reg, reg, reg, reg, reg, reg])
+        globalDf = globalDf.append(regionDf, ignore_index=True)
+    globalDf = globalDf.sort_values(by=['comment_count'], ascending = False).drop_duplicates(subset=['title']).head(10)
+    print(globalDf.to_string(index = False))
 
 if __name__ == "__main__":
     # Arg Parser
@@ -29,4 +39,7 @@ if __name__ == "__main__":
     # END OF ARGUMENT PARSER
     region = args.regionCode.upper()
 
-    get_comment_count(region)
+    if region == "ALL":
+        get_global()
+    else:
+        get_local(region)
