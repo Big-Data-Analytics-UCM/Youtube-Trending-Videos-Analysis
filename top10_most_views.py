@@ -33,13 +33,13 @@ if __name__ == "__main__":
     # Arg Parser
     import argparse
     parser = argparse.ArgumentParser()
-    helpRegionCode = 'Region code for the youtube videos, by default ALL.\nPossible regions:\nCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
-    parser.add_argument("regionCode", help=helpRegionCode, default="ALL")
+    helpRegionCode = 'Region code for the youtube videos, by default GLOBAL.\nPossible regions:\nCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
+    parser.add_argument("regionCode", help=helpRegionCode, default="GLOBAL")
     parser.add_argument("-m", "--mode", help='console or graph, by default is console', default="console")
     args = parser.parse_args()
     # END OF ARGUMENT PARSER
     region = args.regionCode.upper()
-    if region == "ALL":
+    if region == "GLOBAL":
         get_global()
     else:
         get_local(region)
