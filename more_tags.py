@@ -1,6 +1,4 @@
-import json
 import pandas as pd
-import matplotlib.pyplot as plt
 
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
@@ -9,7 +7,7 @@ countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 def get_tags(country):
     r_csv = 'data/' + country + '_youtube_trending_data.csv'
 
-    df = pd.read_csv(r_csv)
+    df = pd.read_csv(r_csv, engine='python', error_bad_lines=False)
 
     df = df[['tags', 'view_count']]
     mask = (df.view_count <= 0)

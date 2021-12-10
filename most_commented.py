@@ -1,6 +1,4 @@
-import json
 import pandas as pd
-import matplotlib.pyplot as plt
 
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
@@ -16,17 +14,20 @@ def get_comment_count(country):
     df = df.sort_values(by=['comment_count'], ascending=False).drop_duplicates(subset=['title'])
     return df.head(10)
 
+
 def get_local(region):
     print(get_comment_count(region).to_string(index = False))
 
+
 def get_global():
-    globalDf = pd.DataFrame()
+    global_df = pd.DataFrame()
     for reg in countries:
-        regionDf = get_comment_count(reg)
-        regionDf = regionDf.assign(region = [reg, reg, reg, reg, reg, reg, reg, reg, reg, reg])
-        globalDf = globalDf.append(regionDf, ignore_index=True)
-    globalDf = globalDf.sort_values(by=['comment_count'], ascending = False).drop_duplicates(subset=['title']).head(10)
-    print(globalDf.to_string(index = False))
+        region_df = get_comment_count(reg)
+        region_df = region_df.assign(region=[reg, reg, reg, reg, reg, reg, reg, reg, reg, reg])
+        global_df = global_df.append(region_df, ignore_index=True)
+    global_df = global_df.sort_values(by=['comment_count'], ascending=False).drop_duplicates(subset=['title']).head(10)
+    print(global_df.to_string(index = False))
+
 
 if __name__ == "__main__":
     # Arg Parser

@@ -8,7 +8,7 @@ def get_categories(country):
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
     ruta_json = 'data/' + country + '_category_id.json'
 
-    df = pd.read_csv(ruta_csv)
+    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
 
     df = df[['categoryId', 'view_count']]
     mask = (df.view_count <= 0)

@@ -17,12 +17,14 @@ def published_at_frequency(country):
     df.insert(loc=3, column='published_hour', value=df.publishedAt.dt.hour)
     return df
 
+
 def generar_grafica(df, country):
     df.published_hour.value_counts(normalize=True).sort_index().plot.bar(figsize=[15, 8], rot=0, color='orange', ec='k')
     plt.xlabel("Published Hour")
     plt.ylabel("Relative frequency of videos")
     plt.title("Published Hour by relative frequency")
     plt.savefig("published_at_frequency_" + country + ".png", dpi=100)
+
 
 def grafica_pais(country):
     category_df = published_at_frequency(country)
@@ -32,7 +34,7 @@ def grafica_pais(country):
 def grafica_mundial():
     hour_df = pd.DataFrame()
     for country in countries:
-        hour_df =  hour_df.append(published_at_frequency(country), ignore_index=True)
+        hour_df = hour_df.append(published_at_frequency(country), ignore_index=True)
 
     generar_grafica(hour_df, "GLOBAL")
 

@@ -5,7 +5,7 @@ countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 def get_view_count(country):
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
 
-    df = pd.read_csv(ruta_csv)
+    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
     df = df[['title', 'view_count']]
     mask = (df.view_count <= 0)
     df = df.loc[~mask]

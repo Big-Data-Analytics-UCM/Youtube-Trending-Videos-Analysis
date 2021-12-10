@@ -25,18 +25,6 @@ def menu_options():
     options.update({'5': "Top 10 videos mas vistos"})
     options.update({'6': "Videos con mas comentarios"})
     options.update({'7': "Videos con mas Me Gusta"})
-    # options['1'] = "Media de visitas por mes."
-    # options['2'] = "Media de visitas por año."
-    # options['3'] = "Categoria con mas videos."
-    # options['4'] = "Top 10 de videos mas vistos."
-    # options['5'] = "Dia de la semana con mas visitas."
-    # options['6'] = "Videos con mayor cantidad de likes."
-    # options['7'] = "Videos con mayor cantidad de comentarios."
-    # options['8'] = "Gráfica de categorías en tendencia por país."
-    # options['9'] = "Gráfica de categorias mundial."
-    # options['10'] = "Cuadro de categorias por país."
-    # options['11'] = "Cuadro de categorias mundial."
-    # options['0'] = "Exit"
     options.update({'0': "Exit"})
     return options
 
@@ -50,17 +38,6 @@ def menu_actions():
     actions.update({'5': videos_mas_vistos})
     actions.update({'6': videos_mas_comentados})
     actions.update({'7': videos_mas_gustados})
-    # actions['1'] = averageVisitsPerMonth
-    # actions['2'] = averageVisitsPerYear
-    # actions['3'] = categoryWithMoreVideos
-    # actions['4'] = top10VideosWithMore
-    # actions['5'] = weekdayWithMoreVisits
-    # actions['6'] = videosWithMoreLikes
-    # actions['7'] = videosWithMoreComments
-    # actions['8'] = grafico_categoria_pais
-    # actions['9'] = categoryGraphWorldwide
-    # actions['10'] = showCategoriesByCountry
-    # actions['11'] = showCategoriesWorldwide
     actions['0'] = exit_program
     return actions
 

@@ -13,19 +13,11 @@ def get_info(country):
     df.drop(['channelId', 'tags', 'thumbnail_link', 'comments_disabled', 'ratings_disabled', 'description'], axis=1,
             inplace=True)
 
-    def caps_percent(title):
-        if len(title) <= 0:
-            return 0
-        s = 0
-        for cr in title:
-            if cr.isupper():
-                s += 1
-        return ((round((s/len(title))*100, 0)) // 5)*5  # Clasificar de 5 en 5
-
-
     df['len_title'] = df.title.apply(len)
     return df
-def generar_grafica(df,region):
+
+
+def generar_grafica(df, region):
     plt.figure(figsize=[11, 9])
     plt.hist(df['len_title'], color='orange', rwidth=0.9)
 
@@ -38,6 +30,7 @@ def generar_grafica(df,region):
     plt.xlabel('Número de caracteres en el título')
     plt.ylabel('Número de apariciones')
     plt.savefig("length_frequency_" + region + ".png", dpi=100)
+
 
 def grafica_pais(country):
     category_df = get_info(country)
