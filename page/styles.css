@@ -27,7 +27,7 @@ body{
 }
 
 .topnav a.active{
-    background-color: #0483aa;
+    background-color: #b92626;
     color: white;
 }
 
@@ -47,6 +47,16 @@ body{
 .about h2{
     text-align: center;
 }
-.about a{
+
+
+
+.integrantes li{
+    color: #df1515;
+    font-size: 18px;
+}
+
+.integrantes a{
     text-decoration: none;
+    color: #df1515;
+    font-size: 18px;
 }
