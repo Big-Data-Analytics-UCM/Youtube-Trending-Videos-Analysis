@@ -26,11 +26,8 @@ def get_tags(country):
                 dic[tag] += row['view_count']
 
     df = pd.DataFrame([[key, dic[key]] for key in dic.keys()], columns=['tags', 'view_count'])
-    df = df.sort_values(by=['view_count'], ascending=False)
-    print(df[0:10])
-
-
-#get_tags(countries[10])
+    df = df.sort_values(by=['view_count'], ascending=False).head(10)
+    print(df)
 
 
 if __name__ == "__main__":

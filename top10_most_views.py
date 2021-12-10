@@ -1,12 +1,9 @@
-import json
 import pandas as pd
-import matplotlib.pyplot as plt
 
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
 def get_view_count(country):
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
-    ruta_json = 'data/' + country + '_category_id.json'
 
     df = pd.read_csv(ruta_csv)
     df = df[['title', 'view_count']]
@@ -17,17 +14,20 @@ def get_view_count(country):
     res = df.head(10)
     return res
 
+
 def get_local(region):
-    print(get_view_count(region).to_string(index = False))
+    print(get_view_count(region).to_string(index=False))
+
 
 def get_global():
-    globalDf = pd.DataFrame()
+    global_df = pd.DataFrame()
     for reg in countries:
-        regionDf = get_view_count(reg)
-        regionDf = regionDf.assign(region = [reg, reg, reg, reg, reg, reg, reg, reg, reg, reg])
-        globalDf = globalDf.append(regionDf, ignore_index=True)
-    globalDf = globalDf.sort_values(by=['view_count'], ascending = False).drop_duplicates(subset=['title']).head(10)
-    print(globalDf.to_string(index = False))
+        region_df = get_view_count(reg)
+        region_df = region_df.assign(region = [reg, reg, reg, reg, reg, reg, reg, reg, reg, reg])
+        global_df = global_df.append(region_df, ignore_index=True)
+    global_df = global_df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['title']).head(10)
+    print(global_df.to_string(index=False))
+
 
 if __name__ == "__main__":
     # Arg Parser
