@@ -22,6 +22,9 @@ def menu_options():
     options.update({'2': "Gráfica para analizar la longitud del título del video"})
     options.update({'3': "Gráfica para analizar la hora de publicación de un video por frecuencia"})
     options.update({'4': "Gráfica para analizar la hora de publicación de un video por likes"})
+    options.update({'5': "Top 10 videos mas vistos"})
+    options.update({'6': "Videos con mas comentarios"})
+    options.update({'7': "Videos con mas Me Gusta"})
     # options['1'] = "Media de visitas por mes."
     # options['2'] = "Media de visitas por año."
     # options['3'] = "Categoria con mas videos."
@@ -44,6 +47,9 @@ def menu_actions():
     actions.update({'2': grafico_long_titulo})
     actions.update({'3': grafico_hora_publicacion_frecuencia})
     actions.update({'4': grafico_hora_publicacion_visitas})
+    actions.update({'5': videos_mas_vistos})
+    actions.update({'6': videos_mas_comentados})
+    actions.update({'7': videos_mas_gustados})
     # actions['1'] = averageVisitsPerMonth
     # actions['2'] = averageVisitsPerYear
     # actions['3'] = categoryWithMoreVideos
@@ -58,6 +64,24 @@ def menu_actions():
     actions['0'] = exit_program
     return actions
 
+def videos_mas_vistos():
+    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+    path = "top10_most_views.py"
+    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    os.system(cmd)
+
+def videos_mas_comentados():
+    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+    path = "most_commented.py"
+    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    os.system(cmd)
+
+def videos_mas_gustados():
+    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+    path = "most_liked.py"
+    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    os.system(cmd)
+
 def grafico_categoria():
     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
     path = "category_frequency.py"
@@ -70,16 +94,11 @@ def grafico_long_titulo():
     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     os.system(cmd)
 
-
-
-
-
 def grafico_hora_publicacion_frecuencia():
     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
     path = "published_at_frequency.py"
     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     os.system(cmd)
-
 
 def grafico_hora_publicacion_visitas():
     pass
@@ -91,10 +110,6 @@ def grafico_hora_publicacion_visitas():
     #cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     #os.system(cmd)
 
-
-
-
-
 def exit_program():
     exit_msg = "Saliendo..."
 
@@ -102,13 +117,11 @@ def exit_program():
     sys.exit(0)
     pass
 
-
 def execute_menu_option(option):
     actions = menu_actions()
     function = actions[option]
     function()
     pass
-
 
 def menu(options):
     # Print options
