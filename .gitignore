@@ -130,8 +130,8 @@ dmypy.json
 
 
 #CSV y JSON
-*.csv
-*.json
+# *.csv
+# *.json
 
 #Data
-Data/
+# Data/
