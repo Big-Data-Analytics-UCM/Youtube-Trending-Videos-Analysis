@@ -3,6 +3,19 @@ body{
     background-color: #33425ff3;
 }
 
+h1{
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: #df1515;
+}
+
 .topnav{
     background-color: #333;
     overflow: hidden;
@@ -39,16 +52,6 @@ body{
     text-decoration: none;
     font-size: 17px;
 }
-
-.about h1{
-    text-align: center;
-}
-
-.about h2{
-    text-align: center;
-}
-
-
 
 .integrantes li{
     color: #df1515;
