@@ -1,0 +1,55 @@
+import json
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
+
+def get_info(country): 
+    ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
+    df = pd.read_csv(ruta_csv)
+
+    mask = (df.view_count <= 0)
+    df = df.loc[~mask]
+
+    sub_df = df.groupby('title')[['view_count', 'likes', 'dislikes','comment_count']].max()
+    return sub_df
+
+def generar_grafica(df, region):
+    corr = df.likes.corr(df.view_count)
+    sns.lmplot(data=sub_df, x='view_count', y='likes', scatter_kws={'color':'orange', 'alpha':0.2, 's':sub_df.likes/10000}, height=6, aspect=1.5)
+    plt.title(f"Regression plot between Views and Likes - correlation: {corr:.3f}", fontdict={'size':18, 'color':'blue'})
+    plt.savefig("correlation_likes_" + region + ".png", dpi=100)
+
+
+def grafica_pais(country):
+    correlation_df = get_info(country)
+    generar_grafica(correlation_df, country)
+
+
+def grafica_mundial():
+    correlation_per_country_df = pd.DataFrame()
+    for country in countries:
+        correlation_per_country_df = correlation_per_country_df.append(get_info(country), ignore_index=True)
+
+    generar_grafica(correlation_per_country_df, "GLOBAL")
+
+
+if __name__ == "__main__":
+    # ARGUMENT PARSER
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    helpRegionCode = 'Region code for the youtube videos, by default ALL.\nPossible regions:\nBR: Brasil,\n\tCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
+    parser.add_argument("regionCode", help=helpRegionCode, default="GLOBAL")
+    parser.add_argument("-m", "--mode", help='console or graph, by default is graph', default="graph")
+    args = parser.parse_args()
+    # END OF ARGUMENT PARSER
+
+    region = args.regionCode.upper()
+    mode = args.mode.upper()
+
+    if region == "GLOBAL":
+        grafica_mundial()
+    else:
+        grafica_pais(region)
