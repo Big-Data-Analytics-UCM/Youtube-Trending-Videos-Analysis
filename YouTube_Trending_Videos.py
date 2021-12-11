@@ -25,6 +25,7 @@ def menu_options():
     options.update({'5': "Top 10 videos mas vistos"})
     options.update({'6': "Videos con mas comentarios"})
     options.update({'7': "Videos con mas Me Gusta"})
+    options.update({'8': "Gráfica de correlación entre número de visitas y likes"})
     options.update({'0': "Exit"})
     return options
 
@@ -38,6 +39,7 @@ def menu_actions():
     actions.update({'5': videos_mas_vistos})
     actions.update({'6': videos_mas_comentados})
     actions.update({'7': videos_mas_gustados})
+    actions.update({'8': grafico_correlacion_likes})
     actions['0'] = exit_program
     return actions
 
@@ -86,6 +88,12 @@ def grafico_hora_publicacion_visitas():
     # cmd = "spark-submit \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     #cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     #os.system(cmd)
+
+def grafico_correlacion_likes():
+    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+    path = "correlation_likes.py"
+    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    os.system(cmd)
 
 def exit_program():
     exit_msg = "Saliendo..."
