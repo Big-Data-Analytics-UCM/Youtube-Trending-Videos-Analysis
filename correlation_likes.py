@@ -7,7 +7,7 @@ countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
 def get_info(country): 
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
-    df = pd.read_csv(ruta_csv)
+    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
 
     mask = (df.view_count <= 0)
     df = df.loc[~mask]
@@ -19,7 +19,7 @@ def generar_grafica(df, region):
     corr = df.likes.corr(df.view_count)
     sns.lmplot(data=df, x='view_count', y='likes', scatter_kws={'color':'orange', 'alpha':0.2, 's':df.likes/10000}, height=6, aspect=1.5)
     plt.title(f"Regression plot between Views and Likes - correlation: {corr:.3f}", fontdict={'size':18, 'color':'blue'})
-    plt.savefig("correlation_likes_" + region + ".png", dpi=100)
+    plt.savefig("outData/correlation_likes_" + region + ".png", dpi=100)
 
 
 def grafica_pais(country):
