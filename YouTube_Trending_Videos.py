@@ -5,8 +5,6 @@ import argparse
 # PROJECT_PATH = os.path.dirname(os.getcwd())
 PROJECT_PATH = os.getcwd()
 
-API_KEY = "AIzaSyCXwEu_N5gbvyD97-uVQCH7FyQq0LmtNMo"
-
 def argument_parser():
     parser = argparse.ArgumentParser(description='Conoce el algoritmo de YouTube y aumenta las probabilidades de'
                                      'conseguir que tu video se vuelva viral.', prog='YouTube_Trending_Videos')
@@ -21,7 +19,7 @@ def menu_options():
     options.update({'1': "Gráfica de categorías en tendencia"})
     options.update({'2': "Gráfica para analizar la longitud del título del video"})
     options.update({'3': "Gráfica para analizar la hora de publicación de un video por frecuencia"})
-    options.update({'4': "Gráfica para analizar la hora de publicación de un video por likes"})
+    options.update({'4': "Gráfica para analizar la hora de publicación de un video por visitas (no implem.)"})
     options.update({'5': "Top 10 videos mas vistos"})
     options.update({'6': "Videos con mas comentarios"})
     options.update({'7': "Videos con mas Me Gusta"})
@@ -33,53 +31,65 @@ def menu_options():
 
 def menu_actions():
     actions = dict()
-    actions.update({'1': grafico_categoria})
-    actions.update({'2': grafico_long_titulo})
-    actions.update({'3': grafico_hora_publicacion_frecuencia})
-    actions.update({'4': grafico_hora_publicacion_visitas})
-    actions.update({'5': videos_mas_vistos})
-    actions.update({'6': videos_mas_comentados})
-    actions.update({'7': videos_mas_gustados})
-    actions.update({'8': grafico_correlacion_likes})
-    actions.update({'9': grafico_correlacion_dislikes})
-    actions['0'] = exit_program
+    # actions.update({'1': grafico_categoria})
+    # actions.update({'2': grafico_long_titulo})
+    # actions.update({'3': grafico_hora_publicacion_frecuencia})
+    # actions.update({'4': grafico_hora_publicacion_visitas})
+    # actions.update({'5': videos_mas_vistos})
+    # actions.update({'6': videos_mas_comentados})
+    # actions.update({'7': videos_mas_gustados})
+    # actions.update({'8': grafico_correlacion_likes})
+    # actions.update({'9': grafico_correlacion_dislikes})
+    # actions.update({'0': exit_program})
+    actions.update({'1': "category_frequency.py"})
+    actions.update({'2': "title_length_analysis.py"})
+    actions.update({'3': "published_at_frequency.py"})
+    # actions.update({'4': grafico_hora_publicacion_visitas})
+    actions.update({'5': "top10_most_views.py"})
+    actions.update({'6': "most_commented.py"})
+    actions.update({'7': "most_liked.py"})
+    actions.update({'8': "correlation_likes.py"})
+    actions.update({'9': "correlation_dislikes.py"})
+    actions.update({'0': exit_program})
     return actions
 
-def videos_mas_vistos():
-    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-    path = "top10_most_views.py"
-    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    os.system(cmd)
 
-def videos_mas_comentados():
-    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-    path = "most_commented.py"
-    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    os.system(cmd)
+# def videos_mas_vistos():
+#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+#     path = "top10_most_views.py"
+#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     os.system(cmd)
 
-def videos_mas_gustados():
-    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-    path = "most_liked.py"
-    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    os.system(cmd)
 
-def grafico_categoria():
-    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-    path = "category_frequency.py"
-    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    os.system(cmd)
+# def videos_mas_comentados():
+#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+#     path = "most_commented.py"
+#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     os.system(cmd)
 
-def grafico_long_titulo():
-    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-    path = "title_length_analysis.py"
-    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    os.system(cmd)
+# def videos_mas_gustados():
+#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+#     path = "most_liked.py"
+#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     os.system(cmd)
 
-def grafico_hora_publicacion_frecuencia():
-    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-    path = "published_at_frequency.py"
-    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    os.system(cmd)
+# def grafico_categoria():
+#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+#     path = "category_frequency.py"
+#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     os.system(cmd)
+
+# def grafico_long_titulo():
+#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+#     path = "title_length_analysis.py"
+#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     os.system(cmd)
+#
+# def grafico_hora_publicacion_frecuencia():
+#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+#     path = "published_at_frequency.py"
+#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     os.system(cmd)
 
 def grafico_hora_publicacion_visitas():
     pass
@@ -91,17 +101,19 @@ def grafico_hora_publicacion_visitas():
     #cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     #os.system(cmd)
 
-def grafico_correlacion_likes():
-    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-    path = "correlation_likes.py"
-    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    os.system(cmd)
+# def grafico_correlacion_likes():
+#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+#     path = "correlation_likes.py"
+#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     os.system(cmd)
+#
+#
+# def grafico_correlacion_dislikes():
+#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+#     path = "correlation_dislikes.py"
+#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+#     os.system(cmd)
 
-def grafico_correlacion_dislikes():
-pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-path = "correlation_dislikes.py"
-cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-os.system(cmd)
 
 def exit_program():
     exit_msg = "Saliendo..."
@@ -111,26 +123,31 @@ def exit_program():
     pass
 
 def execute_menu_option(option):
+    if option == '0':
+        exit_program()
     actions = menu_actions()
-    function = actions[option]
-    function()
-    pass
+    pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+    path = actions[option]
+    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    os.system(cmd)
+
+    # function = actions[option]
+    # function()
+
 
 def menu(options):
-    # Print options
+    # Imprime el menú, solicita al usuario una opción
+    # y verifica si esta es correcta
+
     for code, value in options.items():
         print(code, value)
 
-    # Ask for an option
-    option = str(input("select option: "))
+    option = str(input("Seleccione una opción del menú: "))
 
-    # Verify if its a valid option and execute it
     if option in options.keys():
         execute_menu_option(option)
     else:
-        # print(bcolors.FAIL + "Invalid option" + bcolors.ENDC)
-        print("Invalid option.")
-
+        print("Opción inválida. Inténtelo de nuevo")
     return True
 
 
