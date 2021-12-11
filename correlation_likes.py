@@ -17,7 +17,7 @@ def get_info(country):
 
 def generar_grafica(df, region):
     corr = df.likes.corr(df.view_count)
-    sns.lmplot(data=sub_df, x='view_count', y='likes', scatter_kws={'color':'orange', 'alpha':0.2, 's':sub_df.likes/10000}, height=6, aspect=1.5)
+    sns.lmplot(data=df, x='view_count', y='likes', scatter_kws={'color':'orange', 'alpha':0.2, 's':df.likes/10000}, height=6, aspect=1.5)
     plt.title(f"Regression plot between Views and Likes - correlation: {corr:.3f}", fontdict={'size':18, 'color':'blue'})
     plt.savefig("correlation_likes_" + region + ".png", dpi=100)
 
