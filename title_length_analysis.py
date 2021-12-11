@@ -5,7 +5,7 @@ countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
 def get_info(country): 
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
-    df = pd.read_csv(ruta_csv)
+    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
 
     mask = (df.view_count <= 0)
     df = df.loc[~mask]
@@ -29,7 +29,7 @@ def generar_grafica(df, region):
     plt.title('Número de apariciones según número de caracteres en el título',  fontsize=15)
     plt.xlabel('Número de caracteres en el título')
     plt.ylabel('Número de apariciones')
-    plt.savefig("length_frequency_" + region + ".png", dpi=100)
+    plt.savefig("graphs/length_frequency_" + region + ".png", dpi=100)
 
 
 def grafica_pais(country):

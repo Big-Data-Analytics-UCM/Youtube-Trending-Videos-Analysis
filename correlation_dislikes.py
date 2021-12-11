@@ -19,7 +19,7 @@ def generar_grafica(df, region):
     corr = df.dislikes.corr(df.view_count)
     sns.lmplot(data=df, x='view_count', y='dislikes', scatter_kws={'color':'orange', 'alpha':0.2, 's':df.dislikes/10000}, height=6, aspect=1.5)
     plt.title(f"Regression plot between Views and Dislikes - correlation: {corr:.3f}", fontdict={'size':18, 'color':'blue'})
-    plt.savefig("correlation_dislikes_" + region + ".png", dpi=100)
+    plt.savefig("graphs/correlation_dislikes_" + region + ".png", dpi=100)
 
 
 def grafica_pais(country):

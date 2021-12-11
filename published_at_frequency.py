@@ -23,7 +23,7 @@ def generar_grafica(df, country):
     plt.xlabel("Published Hour")
     plt.ylabel("Relative frequency of videos")
     plt.title("Published Hour by relative frequency")
-    plt.savefig("published_at_frequency_" + country + ".png", dpi=100)
+    plt.savefig("graphs/published_at_frequency_" + country + ".png", dpi=100)
 
 
 def grafica_pais(country):
