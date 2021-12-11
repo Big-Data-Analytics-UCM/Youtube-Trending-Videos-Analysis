@@ -7,7 +7,7 @@ countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
 def get_info(country): 
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
-    df = pd.read_csv(r_csv, engine='python', error_bad_lines=False)
+    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
 
     mask = (df.view_count <= 0)
     df = df.loc[~mask]

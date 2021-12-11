@@ -5,7 +5,7 @@ countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 def get_likes(country):
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
 
-    df = pd.read_csv(ruta_csv)
+    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
     df = df[['title', 'likes']]
     mask = (df.likes <= 0)
     df = df.loc[~mask]

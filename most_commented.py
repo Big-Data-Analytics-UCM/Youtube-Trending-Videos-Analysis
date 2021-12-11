@@ -4,9 +4,8 @@ countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
 def get_comment_count(country):
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
-    ruta_json = 'data/' + country + '_category_id.json'
 
-    df = pd.read_csv(ruta_csv)
+    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
     df = df[['title', 'comment_count']]
     mask = (df.comment_count <= 0)
     df = df.loc[~mask]
