@@ -1,19 +1,32 @@
 import pandas as pd
 
+
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
-def get_view_count(country):
-    ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
+# Mostramos los tags con mas visitas en cada pais
 
-    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
-    df = df[['title', 'view_count']]
+def get_tags(country):
+    r_csv = 'data/' + country + '_youtube_trending_data.csv'
+
+    df = pd.read_csv(r_csv, engine='python', error_bad_lines=False)
+
+    df = df[['tags', 'view_count']]
     mask = (df.view_count <= 0)
     df = df.loc[~mask]
 
-    df = df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['title'])
-    res = df.head(10).reset_index(drop = True)
-    return res
+    df['tags'] = df['tags'].str.split('|')
 
+    dic = {}
+    for index, row in df.iterrows():
+        for tag in row['tags']:
+            if tag not in dic.keys():
+                dic[tag] = row['view_count']
+            else:
+                dic[tag] += row['view_count']
+
+    df = pd.DataFrame([[key, dic[key]] for key in dic.keys()], columns=['tags', 'view_count'])
+    df = df.sort_values(by=['view_count'], ascending=False).head(10)
+    return df.head(10).reset_index(drop=True)
 
 def get_table(regionDF, region):
     #Creates the HTML Struct for the output file
@@ -28,26 +41,26 @@ def get_table(regionDF, region):
     dfOut = regionDF.to_html()
     dfOut = dfOut.replace("<table border=\"1\" class=\"dataframe\">", "<table class=\"table table-dark table-striped\">")
     dfOut = dfOut.replace("<tr style=\"text-align: right;\">", "<tr>")
-    dfOut = dfOut.replace("<th>title</th>", "<th>Título del vídeo</th>")
-    dfOut = dfOut.replace("<th>view_count</th>", "<th>Visitas totales</th>")
+    dfOut = dfOut.replace("<th>title</th>", "<th>Nombre del tag</th>")
+    dfOut = dfOut.replace("<th>likes</th>", "<th>Número de visualizaciones</th>")
     dfOut = dfOut.replace("<th>region</th>", "<th>Región</th>")
     table+= dfOut
     table+="</section>\n"
     table+= "</body>\n"
     table+= "</html>\n"
     #Writes the final HTML code
-    outFile = open("outData/top10_" + region + ".html", "w")
+    outFile = open("outData/more_tags_" + region + ".html", "w")
     outFile.write(table)
     outFile.close()
 
 def get_global():
     global_df = pd.DataFrame()
     for reg in countries:
-        region_df = get_view_count(reg)
-        region_df = region_df.assign(region = [reg, reg, reg, reg, reg, reg, reg, reg, reg, reg])
+        region_df = get_tags(reg)
+        region_df = region_df.assign(region=[reg, reg, reg, reg, reg, reg, reg, reg, reg, reg])
         global_df = global_df.append(region_df, ignore_index=True)
-    global_df = global_df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['title']).head(10)
-    global_df = global_df.reset_index(drop = True)
+    global_df = global_df.sort_values(by=['view_count'], ascending=False).head(10)
+    global_df = global_df.reset_index(drop=True)
     get_table(global_df, "GLOBAL")
 
 
@@ -55,13 +68,19 @@ if __name__ == "__main__":
     # Arg Parser
     import argparse
     parser = argparse.ArgumentParser()
-    helpRegionCode = 'Region code for the youtube videos, by default GLOBAL.\nPossible regions:\nCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
-    parser.add_argument("regionCode", help=helpRegionCode, default="GLOBAL")
+    helpRegionCode = 'Código de región para los videos de YouTube; por defecto, GLOBAL.' \
+                     '\nPosibles regiones:\nCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,' \
+                     '\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,\n\tUS: Estados Unidos'
+    parser.add_argument("regionCode", help=helpRegionCode, default="ALL")
     parser.add_argument("-m", "--mode", help='console or graph, by default is console', default="console")
     args = parser.parse_args()
     # END OF ARGUMENT PARSER
     region = args.regionCode.upper()
+
     if region == "GLOBAL":
         get_global()
     else:
-        get_table(get_view_count(region), region)
+        get_table(get_tags(region), region)
+
+
+

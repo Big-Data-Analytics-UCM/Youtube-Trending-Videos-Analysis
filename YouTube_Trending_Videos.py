@@ -32,24 +32,19 @@ def menu_options():
 
 def menu_actions():
     actions = dict()
-    actions.update({'1': "codes/category_frequency.py"})
-    actions.update({'2': "codes/title_length_analysis.py"})
-    actions.update({'3': "codes/published_at_frequency.py"})
+    actions.update({'1': "scripts/category_frequency.py"})
+    actions.update({'2': "scripts/title_length_analysis.py"})
+    actions.update({'3': "scripts/published_at_frequency.py"})
     # actions.update({'4': grafico_hora_publicacion_visitas})
-    actions.update({'5': "codes/top10_most_views.py"})
-    actions.update({'6': "codes/most_commented.py"})
-    actions.update({'7': "codes/most_liked.py"})
-    actions.update({'8': "codes/correlation_likes.py"})
-    actions.update({'9': "codes/correlation_dislikes.py"})
-    actions.update({'10': "codes/more_tags.py"})
-    actions.update({'11': "codes/title_caps_analysis.py"})
-    actions.update({'0': exit_program})
+    actions.update({'5': "scripts/top10_most_views.py"})
+    actions.update({'6': "scripts/most_commented.py"})
+    actions.update({'7': "scripts/most_liked.py"})
+    actions.update({'8': "scripts/correlation_likes.py"})
+    actions.update({'9': "scripts/correlation_dislikes.py"})
+    actions.update({'10': "scripts/more_tags.py"})
+    actions.update({'11': "scripts/title_caps_analysis.py"})
+    actions.update({'0': ""})
     return actions
-
-
-
-def grafico_hora_publicacion_visitas():
-    pass
 
 
 def exit_program():
@@ -59,13 +54,14 @@ def exit_program():
     sys.exit(0)
     pass
 
+
 def execute_menu_option(option):
     if option == '0':
         exit_program()
     actions = menu_actions()
     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
     path = actions[option]
-    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    cmd = "spark-submit \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     os.system(cmd)
 
 

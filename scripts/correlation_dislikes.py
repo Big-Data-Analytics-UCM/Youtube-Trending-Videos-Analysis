@@ -16,10 +16,14 @@ def get_info(country):
     return sub_df
 
 def generar_grafica(df, region):
+    print("Generando gráfica...")
     corr = df.dislikes.corr(df.view_count)
-    sns.lmplot(data=df, x='view_count', y='dislikes', scatter_kws={'color':'orange', 'alpha':0.2, 's':df.dislikes/10000}, height=6, aspect=1.5)
-    plt.title(f"Regression plot between Views and Dislikes - correlation: {corr:.3f}", fontdict={'size':18, 'color':'blue'})
+    sns.lmplot(data=df, x='view_count', y='dislikes', scatter_kws={'color': 'orange', 'alpha': 0.2,
+               's': df.dislikes/10000}, height=6, aspect=1.5)
+    plt.title(f"Regression plot between Views and Dislikes - correlation: {corr:.3f}",
+              fontdict={'size': 18, 'color': 'blue'})
     plt.savefig("outData/correlation_dislikes_" + region + ".png", dpi=100)
+    print("Gráfica guardada en outData/correlation_dislikes_" + region + ".png")
 
 
 def grafica_pais(country):
@@ -40,7 +44,9 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    helpRegionCode = 'Region code for the youtube videos, by default ALL.\nPossible regions:\nBR: Brasil,\n\tCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
+    helpRegionCode = 'Código de región para los videos de YouTube; por defecto, GLOBAL.' \
+                     '\nPosibles regiones:\nCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,' \
+                     '\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,\n\tUS: Estados Unidos'
     parser.add_argument("regionCode", help=helpRegionCode, default="GLOBAL")
     parser.add_argument("-m", "--mode", help='console or graph, by default is graph', default="graph")
     args = parser.parse_args()
