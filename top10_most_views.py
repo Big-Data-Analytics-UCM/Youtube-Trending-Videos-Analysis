@@ -16,7 +16,6 @@ def get_view_count(country):
 
 
 def get_table(regionDF, region):
-    #print(get_view_count(region).to_string(index=False))
     #Creates the HTML Struct for the output file
     table = "<html>\n"
     table+= "<head>\n"
