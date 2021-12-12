@@ -5,7 +5,8 @@ Proyecto Final de la asignatura Optativa Cloud y Big Data - Facultad de Informá
 abrir una vm en el cloud console y conectarse por ssh
 - sudo apt update
 - sudo apt install python3 python3-dev python3-venv
-- instalar java, spark, git, pip3 (no se si algo mas)
+- instalar java, spark como en lab4
+- instalar git, pip3 (no se si algo mas)
 - git clone <url repo>
 - cd <your-project>
 - crear y activar un entorno virtual
