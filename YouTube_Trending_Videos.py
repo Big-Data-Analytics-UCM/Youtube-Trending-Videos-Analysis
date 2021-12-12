@@ -15,15 +15,17 @@ def argument_parser():
 
 def menu_options():
     options = dict()
-    options.update({'1': "Gráfica de categorías en tendencia"})
-    options.update({'2': "Gráfica para analizar la longitud del título del video"})
-    options.update({'3': "Gráfica para analizar la hora de publicación de un video por frecuencia"})
-    options.update({'4': "Gráfica para analizar la hora de publicación de un video por visitas (no implem.)"})
-    options.update({'5': "Top 10 videos mas vistos"})
-    options.update({'6': "Videos con mas comentarios"})
-    options.update({'7': "Videos con mas Me Gusta"})
-    options.update({'8': "Gráfica de correlación entre número de visitas y likes"})
-    options.update({'9': "Gráfica de correlación entre número de visitas y dislikes"})
+    options.update({'1': "Gráfica de categorías en tendencia."})
+    options.update({'2': "Gráfica para analizar la longitud del título del video."})
+    options.update({'3': "Gráfica para analizar la hora de publicación de un video por frecuencia."})
+    options.update({'4': "Gráfica para analizar la hora de publicación de un video por visitas. (no implem.)"})
+    options.update({'5': "Top 10 videos más vistos."})
+    options.update({'6': "Videos con más comentarios."})
+    options.update({'7': "Videos con más Me Gusta."})
+    options.update({'8': "Gráfica de correlación entre número de visitas y likes."})
+    options.update({'9': "Gráfica de correlación entre número de visitas y dislikes."})
+    options.update({'10': "Tags con más visuzalizaciones por pais."})
+    options.update({'11': "Gráfica para analizar el porcentaje de mayúsculas en los títulos de los videos."})
     options.update({'0': "Exit"})
     return options
 
@@ -39,8 +41,11 @@ def menu_actions():
     actions.update({'7': "codes/most_liked.py"})
     actions.update({'8': "codes/correlation_likes.py"})
     actions.update({'9': "codes/correlation_dislikes.py"})
+    actions.update({'10': "codes/more_tags.py"})
+    actions.update({'11': "codes/title_caps_analysis.py"})
     actions.update({'0': exit_program})
     return actions
+
 
 
 def grafico_hora_publicacion_visitas():
