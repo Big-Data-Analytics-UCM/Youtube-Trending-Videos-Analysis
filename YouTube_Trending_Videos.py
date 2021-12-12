@@ -16,16 +16,15 @@ def argument_parser():
 def menu_options():
     options = dict()
     options.update({'1': "Gráfica de categorías en tendencia."})
-    options.update({'2': "Gráfica para analizar la longitud del título del video."})
-    options.update({'3': "Gráfica para analizar la hora de publicación de un video por frecuencia."})
-    options.update({'4': "Gráfica para analizar la hora de publicación de un video por visitas. (no implem.)"})
-    options.update({'5': "Top 10 videos más vistos."})
-    options.update({'6': "Videos con más comentarios."})
-    options.update({'7': "Videos con más Me Gusta."})
-    options.update({'8': "Gráfica de correlación entre número de visitas y likes."})
-    options.update({'9': "Gráfica de correlación entre número de visitas y dislikes."})
-    options.update({'10': "Tags con más visuzalizaciones por pais."})
-    options.update({'11': "Gráfica para analizar el porcentaje de mayúsculas en los títulos de los videos."})
+    options.update({'2': "Gráfica para analizar la hora de publicación de un video por frecuencia."})
+    options.update({'3': "Gráfica para analizar la longitud del título del video."})
+    options.update({'4': "Gráfica para analizar el porcentaje de mayúsculas en los títulos de los videos."})
+    options.update({'5': "Gráfica de correlación entre número de visitas y likes."})
+    options.update({'6': "Gráfica de correlación entre número de visitas y dislikes."})
+    options.update({'7': "Top 10 videos más vistos."})
+    options.update({'8': "Top 10 videos con más comentarios."})
+    options.update({'9': "Top 10 videos con más Me Gusta."})
+    options.update({'10': "Top 10 tags con más visualizaciones por país."})
     options.update({'0': "Exit"})
     return options
 
@@ -33,16 +32,15 @@ def menu_options():
 def menu_actions():
     actions = dict()
     actions.update({'1': "scripts/category_frequency.py"})
-    actions.update({'2': "scripts/title_length_analysis.py"})
-    actions.update({'3': "scripts/published_at_frequency.py"})
-    # actions.update({'4': grafico_hora_publicacion_visitas})
-    actions.update({'5': "scripts/top10_most_views.py"})
-    actions.update({'6': "scripts/most_commented.py"})
-    actions.update({'7': "scripts/most_liked.py"})
-    actions.update({'8': "scripts/correlation_likes.py"})
-    actions.update({'9': "scripts/correlation_dislikes.py"})
+    actions.update({'2': "scripts/published_at_frequency.py"})
+    actions.update({'3': "scripts/title_length_analysis.py"})
+    actions.update({'4': "scripts/title_caps_analysis.py"})
+    actions.update({'5': "scripts/correlation_likes.py"})
+    actions.update({'6': "scripts/correlation_dislikes.py"})
+    actions.update({'7': "scripts/top10_most_views.py"})
+    actions.update({'8': "scripts/most_commented.py"})
+    actions.update({'9': "scripts/most_liked.py"})
     actions.update({'10': "scripts/more_tags.py"})
-    actions.update({'11': "scripts/title_caps_analysis.py"})
     actions.update({'0': ""})
     return actions
 
@@ -61,7 +59,7 @@ def execute_menu_option(option):
     actions = menu_actions()
     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
     path = actions[option]
-    cmd = "spark-submit \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
+    cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     os.system(cmd)
 
 
