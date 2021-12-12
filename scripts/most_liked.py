@@ -38,6 +38,11 @@ def get_table(region_df, region):
     out_file.write(table)
     out_file.close()
 
+def get_local(region):
+    regionDf = get_likes(region)
+    print(regionDf.to_string(index=False))
+    get_table(regionDf, region)
+
 def get_global():
     global_df = pd.DataFrame()
     for reg in countries:
@@ -47,6 +52,7 @@ def get_global():
     global_df = global_df.sort_values(by=['likes'], ascending=False).drop_duplicates(subset=['title']).head(10)
     global_df = global_df.reset_index(drop=True)
     get_table(global_df, "GLOBAL")
+    print(global_df.to_string(index=False))
 
 
 if __name__ == "__main__":
@@ -65,4 +71,4 @@ if __name__ == "__main__":
     if region == "GLOBAL":
         get_global()
     else:
-        get_table(get_likes(region), region)
+        get_local(region)

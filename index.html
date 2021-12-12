@@ -9,7 +9,7 @@
         <title>Youtube Trending Videos Analysis</title>
     </head>
     <body>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> <!--Terminado-->
             <section class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img src="page/src/youtubelogo.png" alt="Youtube Logo" class="navbar-brand" width="35">
@@ -45,7 +45,7 @@
                 </section>
             </section>
           </nav>
-        <section class="card bg-dark text-white" id="home">
+        <section class="card bg-dark text-white" id="home"> <!--Terminado-->
             <img src="page/src/background.jpg" alt="Background" class="card-img">
             <section class="card-img-overlay align-items-center">
                 <br><br><br><br><br><br><br><br>
@@ -64,7 +64,7 @@
                 </section>
             </section>
         </section>
-        <section class="project" id="project">
+        <section class="project" id="project"> <!--Terminado-->
             <h2 class="text-danger">Sobre el Proyecto</h2>
             <p class="text-center text-white fs-5">
                 La idea de este proyecto es ayudar a empresas o particulares que utilicen YouTube con regularidad para saber
@@ -87,24 +87,40 @@
                 posible
             </p>
         </section>
-        <section id="model">
+        <section id="model"> <!--PENDIENTE-->
             <h2 class="text-danger">Modelo y Datos utilizados</h2>
             <p class="text-center text-white fs-5">
                 Para obtener las métricas que buscamos, partimos de un Dataset que contiene alrededor de 803k vídeos repartidos en 11 países
-                alojado en <a class="text-decoration-none text-danger" href="https://www.kaggle.com/rsrishav/youtube-trending-video-dataset" target="_blank">Kaggle</a>
-                , una plataforma gratuita para obtener diversos Dataset para trabajos de procesamiento de Big Data; 
+                (almacenados en ficheros CSV distintos para cada país) además de un informe con las categorías más populares de la región (almacenado en JSON) alojado en
+                <a class="text-decoration-none text-danger" href="https://www.kaggle.com/rsrishav/youtube-trending-video-dataset" target="_blank">Kaggle</a>
+                , una plataforma gratuita para obtener diversos Dataset para trabajos de procesamiento de Big Data.
+            </p>
+            <p class="text-center text-white fs-5">
+                Cada vídeo almacenado en nuestro dataset está definido por las siguientes variables:
+            </p>
+            <p class="text-center text-danger fs-5">
+                video_id, title, publishedAt, channelId, channelTitle, categoryId, trending_date, tags, view_count, likes, dislikes, comment_count, thumbnail_link, comments_disabled, ratings_disabled, description
+            </p>
+            <p class="text-center text-white fs-5">
+                Y cada categoría almacenada está definida por estas variables:
+            </p>
+            <p class="text-center text-danger fs-5">kind, etag, id, snippet (title, assignable, channelId)</p>
+            <p class="text-center text-white fs-5">
+                Como podemos ver en las variables, hay varias que son relevantes para la finalidad de este proyecto, aunque también hay varias no tan útiles como la descripción del vídeo o el link hacia la miniatura
+                del mismo. Y ya que hay ciertas variables que no nos van a resultar útiles (y que para obtener estadísticas globales el mismo vídeo puede aparecer varias veces), tendremos que hacer una limpieza de
+                
             </p>
         </section>
-        <section id="application">
+        <section id="application"> <!--PENDIENTE-->
             <h2 class="text-danger">Aplicación Desarrollada</h2>
         </section>
-        <section id="results">
+        <section id="results"> <!--PENDIENTE-->
             <h2 class="text-danger">Resultados Obtenidos</h2>
         </section>
-        <section id="performance">
+        <section id="performance"> <!--PENDIENTE-->
             <h2 class="text-danger">Informe de Rendimiento</h2>
         </section>
-        <section id="about">
+        <section id="about"> <!--Casi terminado (Falta foto de Marcos)-->
             <h2 class="text-danger">Sobre Nosotros</h2>
                 <p class="text-center text-white fs-5">
                     Somos un grupo de estudiantes de la Facultad de Informática
@@ -121,7 +137,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                                 </svg>
-                                Sergio Crespillo Campos
+                                Sergio Crespillo
                             </a>
                         </li>
                       </section>
@@ -132,7 +148,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                                 </svg>
-                                Marcos Matute Fernandez
+                                Marcos Matute
                             </a>
                         </li>
                       </section>
@@ -143,7 +159,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                                 </svg>
-                                Camilo Andres D'isidoro
+                                Camilo D'isidoro
                             </a>
                         </li>
                       </section>
@@ -172,6 +188,12 @@
                     </section>
                   </section>
         </section>
+        <br>
+        <nav class="navbar navbar-dark bg-dark">
+            <section class="container-fluid">
+              <p class="text-white">Copyright 2021 - Youtube Trending Videos Analysis</p>
+            </section>
+        </nav>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     </body>
 </html>
