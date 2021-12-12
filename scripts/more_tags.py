@@ -53,6 +53,7 @@ def get_table(regionDF, region):
     outFile.write(table)
     outFile.close()
 
+
 def get_global():
     global_df = pd.DataFrame()
     for reg in countries:
