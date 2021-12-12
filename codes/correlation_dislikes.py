@@ -1,42 +1,38 @@
-#!/usr/bin/env python
-
+import json
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
-def published_at_frequency(country):
-    ruta = 'data/' + country + '_youtube_trending_data.csv'
-    df = pd.read_csv(ruta, parse_dates=['publishedAt', 'trending_date'], engine='python', on_bad_lines='skip')
+def get_info(country): 
+    ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
+    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
 
     mask = (df.view_count <= 0)
     df = df.loc[~mask]
 
-    df.rename(columns={'trending_date': 'trendingAt'}, inplace=True)
+    sub_df = df.groupby('title')[['view_count', 'likes', 'dislikes','comment_count']].max()
+    return sub_df
 
-    df.insert(loc=3, column='published_hour', value=df.publishedAt.dt.hour)
-    return df
-
-
-def generar_grafica(df, country):
-    df.published_hour.value_counts(normalize=True).sort_index().plot.bar(figsize=[15, 8], rot=0, color='orange', ec='k')
-    plt.xlabel("Published Hour")
-    plt.ylabel("Relative frequency of videos")
-    plt.title("Published Hour by relative frequency")
-    plt.savefig("graphs/published_at_frequency_" + country + ".png", dpi=100)
+def generar_grafica(df, region):
+    corr = df.dislikes.corr(df.view_count)
+    sns.lmplot(data=df, x='view_count', y='dislikes', scatter_kws={'color':'orange', 'alpha':0.2, 's':df.dislikes/10000}, height=6, aspect=1.5)
+    plt.title(f"Regression plot between Views and Dislikes - correlation: {corr:.3f}", fontdict={'size':18, 'color':'blue'})
+    plt.savefig("outData/correlation_dislikes_" + region + ".png", dpi=100)
 
 
 def grafica_pais(country):
-    category_df = published_at_frequency(country)
-    generar_grafica(category_df, country)
+    correlation_df = get_info(country)
+    generar_grafica(correlation_df, country)
 
 
 def grafica_mundial():
-    hour_df = pd.DataFrame()
+    correlation_per_country_df = pd.DataFrame()
     for country in countries:
-        hour_df = hour_df.append(published_at_frequency(country), ignore_index=True)
+        correlation_per_country_df = correlation_per_country_df.append(get_info(country), ignore_index=True)
 
-    generar_grafica(hour_df, "GLOBAL")
+    generar_grafica(correlation_per_country_df, "GLOBAL")
 
 
 if __name__ == "__main__":
