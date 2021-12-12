@@ -27,7 +27,7 @@
                             <a class="nav-link" href="#project">Proyecto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#model">Modelo y Datos</a>
+                            <a class="nav-link" href="#data">Datos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#application">Aplicación</a>
@@ -87,8 +87,8 @@
                 posible
             </p>
         </section>
-        <section id="model"> <!--PENDIENTE-->
-            <h2 class="text-danger">Modelo y Datos utilizados</h2>
+        <section id="data"> <!--Terminado-->
+            <h2 class="text-danger">Datos utilizados</h2>
             <p class="text-center text-white fs-5">
                 Para obtener las métricas que buscamos, partimos de un Dataset que contiene alrededor de 803k vídeos repartidos en 11 países
                 (almacenados en ficheros CSV distintos para cada país) además de un informe con las categorías más populares de la región (almacenado en JSON) alojado en
@@ -108,11 +108,29 @@
             <p class="text-center text-white fs-5">
                 Como podemos ver en las variables, hay varias que son relevantes para la finalidad de este proyecto, aunque también hay varias no tan útiles como la descripción del vídeo o el link hacia la miniatura
                 del mismo. Y ya que hay ciertas variables que no nos van a resultar útiles (y que para obtener estadísticas globales el mismo vídeo puede aparecer varias veces), tendremos que hacer una limpieza de
-                los datos que estaremos usando
+                los datos que estaremos usando.
             </p>
         </section>
         <section id="application"> <!--PENDIENTE-->
             <h2 class="text-danger">Aplicación Desarrollada</h2>
+            <p class="text-center text-white fs-5">
+                La aplicación está basada en una arquitectura de microservicios, creando pequeños scripts adicionales que hacen un estudio específico cada uno.
+                La idea es tener una aplicación lo más modularizada posible donde sus módulos sean lo más independientes posible de los demás. También cada módulo
+                generará una salida en un formato de gráficas y tablas, para que sea amigable con el usuario y más fácil de visualizar.
+                Actualmente la aplicación completa obtiene las siguientes métricas:
+            </p>
+            <ul class="list-unstyled text-center text-danger">
+                <li>Gráfico de categorías en tendencia</li>
+                <li>Gráfica para analizar la longitud del título del vídeo</li>
+                <li>Gráfica para analizar la hora de publicación de un video por frecuencia</li>
+                <li>Top 10 videos más vistos</li>
+                <li>Top 10 videos más gustados</li>
+                <li>Top 10 videos más comentados</li>
+                <li>Gráfica de correlación entre número de visitas y Me Gusta</li>
+                <li>Gráfica de correlación entre número de visitas y No Me Gusta</li>
+                <li>Top 10 Etiquetas con más visualizaciones por país</li>
+                <li>Gráfica para analizar el porcentaje de mayúsculas en los títulos de los videos</li>
+            </ul>
         </section>
         <section id="results"> <!--PENDIENTE-->
             <h2 class="text-danger">Resultados Obtenidos</h2>
@@ -120,7 +138,7 @@
         <section id="performance"> <!--PENDIENTE-->
             <h2 class="text-danger">Informe de Rendimiento</h2>
         </section>
-        <section id="about"> <!--Casi terminado (Falta foto de Marcos)-->
+        <section id="about"> <!--Terminado-->
             <h2 class="text-danger">Sobre Nosotros</h2>
                 <p class="text-center text-white fs-5">
                     Somos un grupo de estudiantes de la Facultad de Informática
