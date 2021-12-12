@@ -24,6 +24,7 @@ def menu_options():
     options.update({'7': "Videos con mas Me Gusta"})
     options.update({'8': "Gráfica de correlación entre número de visitas y likes"})
     options.update({'9': "Gráfica de correlación entre número de visitas y dislikes"})
+    options.update({'10': "Tags con mas visuzalizaciones por pais."})
     options.update({'0': "Exit"})
     return options
 
@@ -39,6 +40,7 @@ def menu_actions():
     actions.update({'7': "codes/most_liked.py"})
     actions.update({'8': "codes/correlation_likes.py"})
     actions.update({'9': "codes/correlation_dislikes.py"})
+    actions.update({'10': "codes/more_tags.py"})
     actions.update({'0': exit_program})
     return actions
 
