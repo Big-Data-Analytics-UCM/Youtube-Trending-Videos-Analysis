@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
-def get_info(country):
+def get_info(country): 
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
     df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
 
@@ -12,33 +12,24 @@ def get_info(country):
 
     df.drop(['channelId', 'tags', 'thumbnail_link', 'comments_disabled', 'ratings_disabled', 'description'], axis=1,
             inplace=True)
-    df['percent_caps'] = df.title.apply(caps_percent)
+
+    df['len_title'] = df.title.apply(len)
     return df
-
-
-def caps_percent(title):
-    if len(title) <= 0:
-        return 0
-    s = 0
-    for cr in title:
-        if cr.isupper():
-            s += 1
-    return ((round((s/len(title))*100, 0)) // 5)*5  # Clasificar de 5 en 5
 
 
 def generar_grafica(df, region):
     plt.figure(figsize=[11, 9])
-    plt.hist(df['percent_caps'], color='orange', rwidth=0.9)
+    plt.hist(df['len_title'], color='orange', rwidth=0.9)
 
-    median_caps = df['percent_caps'].mean()
-    plt.axvline(median_caps, color='#fc4f30', label='Media')
+    median_length = df['len_title'].mean()
+    plt.axvline(median_length, color='#fc4f30', label='Media')
 
     plt.legend()
     plt.grid(axis='y')
-    plt.title('Número de apariciones según porcentaje de mayúsculas en el título',  fontsize=15)
-    plt.xlabel('Porcentaje de mayúsculas en el título')
+    plt.title('Número de apariciones según número de caracteres en el título',  fontsize=15)
+    plt.xlabel('Número de caracteres en el título')
     plt.ylabel('Número de apariciones')
-    plt.savefig("graphs/caps_percentage" + region + ".png", dpi=100)
+    plt.savefig("outData/length_frequency_" + region + ".png", dpi=100)
 
 
 def grafica_pais(country):
