@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 countries = ["BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
 
 # Mostramos los tags con mas visitas en cada pais
