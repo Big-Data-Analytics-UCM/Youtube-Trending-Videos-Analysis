@@ -33,7 +33,9 @@ if __name__ == "__main__":
     # Arg Parser
     import argparse
     parser = argparse.ArgumentParser()
-    helpRegionCode = 'Region code for the youtube videos, by default ALL. \nPossible regions:\nCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
+    helpRegionCode = 'Código de región para los videos de YouTube; por defecto, GLOBAL.' \
+                     '\nPosibles regiones:\nCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,' \
+                     '\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,\n\tUS: Estados Unidos'
     parser.add_argument("regionCode", help=helpRegionCode, default="ALL")
     parser.add_argument("-m", "--mode", help='console or graph, by default is console', default="console")
     args = parser.parse_args()

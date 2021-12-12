@@ -19,11 +19,13 @@ def published_at_frequency(country):
 
 
 def generar_grafica(df, country):
+    print("Generando gráfica...")
     df.published_hour.value_counts(normalize=True).sort_index().plot.bar(figsize=[15, 8], rot=0, color='orange', ec='k')
     plt.xlabel("Published Hour")
     plt.ylabel("Relative frequency of videos")
     plt.title("Published Hour by relative frequency")
     plt.savefig("outData/published_at_frequency_" + country + ".png", dpi=100)
+    print("Gráfica guardada en outData/published_at_frequency_" + country + ".png")
 
 
 def grafica_pais(country):
@@ -44,7 +46,9 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    helpRegionCode = 'Region code for the youtube videos, by default ALL.\nPossible regions:\nBR: Brasil,\n\tCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
+    helpRegionCode = 'Código de región para los videos de YouTube; por defecto, GLOBAL.' \
+                     '\nPosibles regiones:\nCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,' \
+                     '\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,\n\tUS: Estados Unidos'
     parser.add_argument("regionCode", help=helpRegionCode, default="GLOBAL")
     parser.add_argument("-m", "--mode", help='console or graph, by default is graph', default="graph")
     args = parser.parse_args()

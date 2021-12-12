@@ -17,7 +17,9 @@ def get_info(country):
     return df
 
 
-def generar_grafica(df, region):
+def generar_grafica(df, country):
+    print("Generando gráfica...")
+
     plt.figure(figsize=[11, 9])
     plt.hist(df['len_title'], color='orange', rwidth=0.9)
 
@@ -29,7 +31,8 @@ def generar_grafica(df, region):
     plt.title('Número de apariciones según número de caracteres en el título',  fontsize=15)
     plt.xlabel('Número de caracteres en el título')
     plt.ylabel('Número de apariciones')
-    plt.savefig("outData/length_frequency_" + region + ".png", dpi=100)
+    plt.savefig("outData/length_frequency_" + country + ".png", dpi=100)
+    print("Gráfica guardada en outData/published_at_frequency_" + country + ".png")
 
 
 def grafica_pais(country):
@@ -50,7 +53,9 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    helpRegionCode = 'Region code for the youtube videos, by default ALL.\nPossible regions:\n\BR: Brasil\n\tCA: Canada,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japon,\n\tKR: Korea,\n\tMX: Mexico,\n\tRU: Rusia,\n\tUS: Estados Unidos'
+    helpRegionCode = 'Código de región para los videos de YouTube; por defecto, GLOBAL.' \
+                     '\nPosibles regiones:\nCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,\n\tGB: Reino Unido,' \
+                     '\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,\n\tUS: Estados Unidos'
     parser.add_argument("regionCode", help=helpRegionCode, default="GLOBAL")
     parser.add_argument("-m", "--mode", help='console or graph, by default is graph', default="graph")
     args = parser.parse_args()
