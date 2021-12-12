@@ -25,7 +25,7 @@ def get_tags(country):
                 dic[tag] += row['view_count']
 
     df = pd.DataFrame([[key, dic[key]] for key in dic.keys()], columns=['tags', 'view_count'])
-    df = df.sort_values(by=['view_count'], ascending=False).head(10)
+    df = df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['tags'])
     return df.head(10).reset_index(drop=True)
 
 def get_table(regionDF, region):
@@ -41,8 +41,8 @@ def get_table(regionDF, region):
     dfOut = regionDF.to_html()
     dfOut = dfOut.replace("<table border=\"1\" class=\"dataframe\">", "<table class=\"table table-dark table-striped\">")
     dfOut = dfOut.replace("<tr style=\"text-align: right;\">", "<tr>")
-    dfOut = dfOut.replace("<th>title</th>", "<th>Nombre del tag</th>")
-    dfOut = dfOut.replace("<th>likes</th>", "<th>Número de visualizaciones</th>")
+    dfOut = dfOut.replace("<th>tags</th>", "<th>Nombre del tag</th>")
+    dfOut = dfOut.replace("<th>view_count</th>", "<th>Número de visualizaciones</th>")
     dfOut = dfOut.replace("<th>region</th>", "<th>Región</th>")
     table+= dfOut
     table+="</section>\n"
@@ -64,7 +64,7 @@ def get_global():
         region_df = get_tags(reg)
         region_df = region_df.assign(region=[reg, reg, reg, reg, reg, reg, reg, reg, reg, reg])
         global_df = global_df.append(region_df, ignore_index=True)
-    global_df = global_df.sort_values(by=['view_count'], ascending=False).head(10)
+    global_df = global_df.sort_values(by=['view_count'], ascending=False).drop_duplicates(subset=['tags']).head(10)
     global_df = global_df.reset_index(drop=True)
     get_table(global_df, "GLOBAL")
     print(global_df.to_string(index=False))
