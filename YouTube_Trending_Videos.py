@@ -2,7 +2,6 @@ import os
 import sys
 import argparse
 
-# PROJECT_PATH = os.path.dirname(os.getcwd())
 PROJECT_PATH = os.getcwd()
 
 def argument_parser():
@@ -31,16 +30,6 @@ def menu_options():
 
 def menu_actions():
     actions = dict()
-    # actions.update({'1': grafico_categoria})
-    # actions.update({'2': grafico_long_titulo})
-    # actions.update({'3': grafico_hora_publicacion_frecuencia})
-    # actions.update({'4': grafico_hora_publicacion_visitas})
-    # actions.update({'5': videos_mas_vistos})
-    # actions.update({'6': videos_mas_comentados})
-    # actions.update({'7': videos_mas_gustados})
-    # actions.update({'8': grafico_correlacion_likes})
-    # actions.update({'9': grafico_correlacion_dislikes})
-    # actions.update({'0': exit_program})
     actions.update({'1': "codes/category_frequency.py"})
     actions.update({'2': "codes/title_length_analysis.py"})
     actions.update({'3': "codes/published_at_frequency.py"})
@@ -54,65 +43,8 @@ def menu_actions():
     return actions
 
 
-# def videos_mas_vistos():
-#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-#     path = "top10_most_views.py"
-#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     os.system(cmd)
-
-
-# def videos_mas_comentados():
-#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-#     path = "most_commented.py"
-#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     os.system(cmd)
-
-# def videos_mas_gustados():
-#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-#     path = "most_liked.py"
-#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     os.system(cmd)
-
-# def grafico_categoria():
-#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-#     path = "category_frequency.py"
-#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     os.system(cmd)
-
-# def grafico_long_titulo():
-#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-#     path = "title_length_analysis.py"
-#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     os.system(cmd)
-#
-# def grafico_hora_publicacion_frecuencia():
-#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-#     path = "published_at_frequency.py"
-#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     os.system(cmd)
-
 def grafico_hora_publicacion_visitas():
     pass
-    #pais = str(input("Indique el código del país: "))
-    # os.system("python3 liveData.py {COUNTRY}".format(COUNTRY=pais))
-    # path = os.path.join(PROJECT_PATH, "category_frequency.py")
-    #path = "category_frequency.py"
-    # cmd = "spark-submit \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    #cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-    #os.system(cmd)
-
-# def grafico_correlacion_likes():
-#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-#     path = "correlation_likes.py"
-#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     os.system(cmd)
-#
-#
-# def grafico_correlacion_dislikes():
-#     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-#     path = "correlation_dislikes.py"
-#     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
-#     os.system(cmd)
 
 
 def exit_program():
@@ -130,9 +62,6 @@ def execute_menu_option(option):
     path = actions[option]
     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     os.system(cmd)
-
-    # function = actions[option]
-    # function()
 
 
 def menu(options):
