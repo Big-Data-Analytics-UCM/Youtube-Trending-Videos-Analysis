@@ -111,7 +111,7 @@
                 los datos que estaremos usando.
             </p>
         </section>
-        <section id="application"> <!--PENDIENTE-->
+        <section id="application"> <!--Terminado-->
             <h2 class="text-danger">Aplicación Desarrollada</h2>
             <p class="text-center text-white fs-5">
                 La aplicación está basada en una arquitectura de microservicios, creando pequeños scripts adicionales que hacen un estudio específico cada uno.
@@ -131,9 +131,54 @@
                 <li>Top 10 Etiquetas con más visualizaciones por país</li>
                 <li>Gráfica para analizar el porcentaje de mayúsculas en los títulos de los videos</li>
             </ul>
+            <h3 class="text-center text-danger">Cómo se ejecuta la aplicación</h3>
+            <p class="text-center text-white fs-5">
+                Para ejecutar esta aplicación se requiere tener instalado Python y Apache Spark en modo local, además de diferentes librerías que permiten generar
+                los gráficos de cada estudio.
+                Los pasos para realizar la instalación son los siguientes (partiendo desde tener Python instalado y ejecutamos un SO Linux):
+            </p>
+            <ul class="list-unstyled text-center text-danger">
+                <li>Instalar Java: $sudo apt install default-jre</li>
+                <li>Descargar Spark: $curl -O https://ftp.cixug.es/apache/spark/spark-3.1.2/spark-3.1.2-bin-hadoop3.2.tgz</li>
+                <li>Extraer Spark: $tar xvf spark-3.1.2-bin-hadoop3.2.tgz</li>
+                <li>Mover Spark a un directorio de instalación: $sudo mv spark-3.1.2-bin-hadoop3.2 /usr/local/spark</li>
+                <li>Modificar el PATH del sistema: $sudo nano ~/.profile</li>
+                <li>Añadir la siguiente línea al final del PATH: PATH="$PATH:/usr/local/spark/bin"</li>
+                <li>Guardar los cambios en el PATH y actualizar el PATH durante la sesión actual (volver a introducirlo si se cierra la sesión): $source ~/.profile</li>
+                <li>Instalar las librerías adicionales (dentro del directorio de la aplicación): $pip install -r requirements.txt</li>
+            </ul>
         </section>
         <section id="results"> <!--PENDIENTE-->
             <h2 class="text-danger">Resultados Obtenidos</h2>
+            <h5 class="card-title text-center text-info">Frecuencia de visualización de cada categoría a nivel mundial</h5>
+            <img src="outData/category_frequency_GLOBAL.png" class="rounded mx-auto d-block" alt="Frecuencia de categorías" width="800">
+            <br>
+            <h5 class="card-title text-center text-info">Gráfica para analizar la longitud del título del vídeo</h5>
+            <img src="outData/length_frequency_GLOBAL.png" class="rounded mx-auto d-block" alt="Frecuencia de longitud de título" width="800">
+            <br>
+            <h5 class="card-title text-center text-info">Gráfica para analizar la hora de publicación de un video por frecuencia</h5>
+            <img src="outData/published_at_frequency_GLOBAL.png" class="rounded mx-auto d-block" alt="Frecuencia de hora de publicación" width="800">
+            <br>
+            <h5 class="card-title text-center text-info">Top 10 videos más vistos</h5>
+            <img src="outData/top10_GLOBAL.png" class="rounded mx-auto d-block" alt="Top mas vistos" width="800">
+            <br>
+            <h5 class="card-title text-center text-info">Top 10 videos más gustados</h5>
+            <img src="outData/most_liked_GLOBAL.png" class="rounded mx-auto d-block" alt="Top mas gustados" width="800">
+            <br>
+            <h5 class="card-title text-center text-info">Top 10 videos más comentados</h5>
+            <img src="outData/most_commented_GLOBAL.png" class="rounded mx-auto d-block" alt="Top mas comentados" width="800">
+            <br>
+            <h5 class="card-title text-center text-info">Gráfica de correlación entre número de visitas y Me Gusta</h5>
+            <img src="outData/correlation_likes_GLOBAL.png" class="rounded mx-auto d-block" alt="Correlacion con Likes" width="800">
+            <br>
+            <h5 class="card-title text-center text-info">Gráfica de correlación entre número de visitas y No Me Gusta</h5>
+            <img src="outData/correlation_dislikes_GLOBAL.png" class="rounded mx-auto d-block" alt="Correlacion con Dislikes" width="800">
+            <br>
+            <h5 class="card-title text-center text-info">Top 10 Etiquetas con más visualizaciones por país</h5>
+            <img src="outData/more_tags_GLOBAL.png" class="rounded mx-auto d-block" alt="Top etiquetas" width="800">
+            <br>
+            <h5 class="card-title text-center text-info">Gráfica para analizar el porcentaje de mayúsculas en los títulos de los videos</h5>
+            <img src="outData/caps_percentageGLOBAL.png" class="rounded mx-auto d-block" alt="Porcentaje Mayusculas" width="800">
         </section>
         <section id="performance"> <!--PENDIENTE-->
             <h2 class="text-danger">Informe de Rendimiento</h2>
