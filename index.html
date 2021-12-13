@@ -147,6 +147,28 @@
                 <li>Guardar los cambios en el PATH y actualizar el PATH durante la sesión actual (volver a introducirlo si se cierra la sesión): $source ~/.profile</li>
                 <li>Instalar las librerías adicionales (dentro del directorio de la aplicación): $pip install -r requirements.txt</li>
             </ul>
+            <h3 class="text-center text-danger">Pasos adicionales para desplegar en un cluster Cloud</h3>
+            <p class="text-center text-white fs-5">
+                Para desplegar la aplicación en un entorno Cloud, se deben seguir estos pasos adicionales. Para información adicional se
+                puede consultar <a href="https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine" class="text-decoration-none text-danger" target="_blank">esta página del soporte técnico de Google Cloud</a>
+            </p>
+            <ul class="list-unstyled text-center text-danger">
+                <li>Crear un cluster nuevo:
+                    $ gcloud dataproc clusters create example-cluster --enable-component-gateway
+                     --region europe-west6 --zone europe-west6-b --master-machine-type n1-standard-4
+                      --master-boot-disk-size 50 --num-workers 2 --worker-machine-type n1-standard-4
+                       --worker-boot-size-disk 50 --image-version 2.0-debian10
+                </li>
+                <li>Acceder a la maquina maestra del cluster con SSH</li>
+                <li>Actualizar e instalar wget y tasksel: $sudo apt update && sudo apt install --assume-yes wget tasksel</li>
+                <li>Descargar el escritorio remoto de Chrome para la máquina maestra del cluster: $ wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb && sudo apt-get install --assume-yes ./chrome-remote-desktop_current_amd64.deb</li>
+                <li>Instalar el entorno Xfce: $ sudo DEBIAN_FRONTEND=noninteractive \ apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver</li>
+                <li>Establecer Xfce como entorno de escritorio predeterminado: $ sudo bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'</li>
+                <li>Inhabilitar el servicio de administrador de pantallas de la instancia actual: $ sudo systemctl disable lightdm.service</li>
+                <li>Instalar Google Chrome en la maquina maestra del cluster: $ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo apt install --assume-yes ./google-chrome-stable_current_amd64.deb"</li>
+                <li>En Google Chrome desde la maquina local seguir los pasos indicados <a href="https://remotedesktop.google.com/headless" class="text-decoration-none text-danger fst-italic" target="_blank">aquí</a></li>
+                <li>Una vez configurado, acceder a Acceso remoto, pulsar en la máquina principal del cluster, introducir el pin de 6 dígitos pedido durante la configuración y continuar los pasos de arriba para terminar la configuración desde el terminal SSH</li>
+            </ul>
         </section>
         <section id="results"> <!--Terminado-->
             <h2 class="text-danger">Resultados Obtenidos</h2>

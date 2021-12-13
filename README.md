@@ -86,7 +86,11 @@ Abrir una Cloud Shell en la página de google cloud
     - Introducir un Pin de 6 dígitos para acceder al clúster remotamente
 - Confirmar que el servicio de escritorio remoto está en ejecución:
     - $ sudo systemctl status chrome-remote-desktop@$USER
-
+- Si el servicio está en ejecución, acceder en la máquina local, en la página de escritorio remoto de Chrome y pulsar en Acceso remoto
+    - https://remotedesktop.google.com/
+- Hacer clic en la instancia de la máquina principal del Cluster y digitar el Pin de 6 dígitos puesto anteriormente
+- Una vez cargado el entorno de escritorio, pulsar en Use Default Config y abrir un terminal para descargar el repositorio siguiendo los pasos del apartado anterior
+    - Los pasos de instalación de componentes deben hacerse desde la terminal SSH cargada anteriormente, pues en el entorno remoto de escritorio no hay permisos de sudo
 ## Más Información
     
 Se puede encontrar más información referente a nuestro proyecto en nuestra página web:
