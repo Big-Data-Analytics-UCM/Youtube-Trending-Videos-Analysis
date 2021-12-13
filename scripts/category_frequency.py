@@ -52,13 +52,10 @@ def consola_pais(country, sql_context, is_global):
 
 
 def consola_global(sql_context):
-    # categories_per_country_df = dict()
-    categories_per_country_df = pd.DataFrame()
+    dataframes = dict()
     for country in countries:
-        # dataframes[country] = consola_pais(country, sql_context, True)
-        categories_per_country_df = categories_per_country_df.append(consola_pais(country, sql_context, True),
-                                                                     ignore_index=True)
-    categories_per_country_df.show()
+        dataframes[country] = consola_pais(country, sql_context, True)
+
 
 
 def grafica_pais(country, is_global):
