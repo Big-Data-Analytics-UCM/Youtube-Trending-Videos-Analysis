@@ -91,9 +91,6 @@ Abrir una Cloud Shell en la página de google cloud
 Se puede encontrar más información referente a nuestro proyecto en nuestra página web:
     https://big-data-analytics-ucm.github.io/Youtube-Trending-Videos-Analysis/# 
     
-O en el github:
-    https://github.com/Big-Data-Analytics-UCM/Youtube-Trending-Videos-Analysis 
-    
 Los datasets utilizados para el análisis pueden ser descargados desde el siguiente enlace:
     [YoutubeAnalisis.csv](https://www.kaggle.com/rsrishav/youtube-trending-video-dataset) 
     
