@@ -56,11 +56,6 @@ _________________________
 `pip3 install -r requirements.txt`
 
 
-## Contenido del proyecto
-
-FALTA
-
-
 ## Pasos adicionales para implementar el código en un Cluster de Google Cloud
 Abrir una Cloud Shell en la página de google cloud
 - Crear un clúster nuevo: 
