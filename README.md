@@ -1,4 +1,4 @@
-# Análisis predictivo de tendencias virales en vídeos de Youtube.
+# Análisis predictivo de tendencias virales en vídeos de Youtube
 Proyecto Final de la asignatura Optativa Cloud y Big Data - Facultad de Informática UCM 2021/22 
 
 ### Objetivo
