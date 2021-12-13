@@ -41,7 +41,7 @@ def generar_grafica(df, region):
     plt.xlabel('Porcentaje de mayúsculas en el título')
     plt.ylabel('Número de apariciones')
     plt.savefig("outData/caps_percentage" + region + ".png", dpi=100)
-    print("Gráfica guardada en outData/published_at_frequency_" + region + ".png")
+    print("Gráfica guardada en outData/caps_percentage" + region + ".png")
 
 
 def grafica_pais(country):
