@@ -61,13 +61,13 @@ def execute_menu_option(option):
     actions = menu_actions()
     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
     while pais not in paises:
-        print('\nLas posibles regiones son:\n\tBR: Brasil\n\tCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,' \
-                     '\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,' \
-                     '\n\tUS: Estados Unidos')
+        print('\nLas posibles regiones son:\n\tBR: Brasil\n\tCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,'
+              '\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,'
+              '\n\tUS: Estados Unidos')
         pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
     modo = str(input("Indique el modo en el que quiere ver el resultado, CONSOLA o GRAFICA:"))
     path = actions[option]
-    cmd = "python3 \"{PATH}\" -m {MODE} {COUNTRY}".format(PATH=path, MODE=modo, COUNTRY=pais)
+    cmd = "spark-submit \"{PATH}\" -m {MODE} {COUNTRY}".format(PATH=path, MODE=modo, COUNTRY=pais)
     os.system(cmd)
 
 
