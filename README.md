@@ -2,7 +2,8 @@
 Proyecto Final de la asignatura Optativa Cloud y Big Data - Facultad de Informática UCM 2021/22 
 
 ### Objetivo
-El objetivo de este proyecto es obtener un análisis predictivo de un dataset de datos sobre los videos de tendencias diarias de YouTube. Se incluyen datos para las regiones India, EE. UU., Gran Bretaña, Alemania, Canadá, Francia, Rusia, Brasil, México, Corea del Sur , y Japón, respectivamente, con hasta 200 videos de tendencias listados por día. Los datos incluyen el título del video, el título del canal, la hora de publicación, las etiquetas, las vistas, los gustos y los disgustos, la descripción y el recuento de comentarios.
+El objetivo de este proyecto es obtener un análisis predictivo de un dataset de datos sobre los videos de tendencias diarias de YouTube para poder obtener como resultado los factores que potencian que un video se haga viral en la plataforma.
+Se incluyen datos para las regiones India, EE. UU., Gran Bretaña, Alemania, Canadá, Francia, Rusia, Brasil, México, Corea del Sur , y Japón, respectivamente, con hasta 200 videos de tendencias listados por día. Los datos incluyen el título del video, el título del canal, la hora de publicación, las etiquetas, las vistas, los gustos y los disgustos, la descripción y el recuento de comentarios.
 
 ### Requisitos previos para configurar el proyecto
 
