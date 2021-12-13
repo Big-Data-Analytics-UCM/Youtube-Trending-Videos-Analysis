@@ -63,7 +63,8 @@ FALTA
 
 ## Pasos adicionales para implementar el código en un Cluster de Google Cloud
 Abrir una Cloud Shell en la página de google cloud
-- crear un clúster nuevo: $ gcloud dataproc clusters create example-cluster --enable-component-gateway --region europe-west6 --zone europe-west6-b --master-machine-type n1-standard-4 --master-boot-disk-size 50 --num-workers 2 --worker-machine-type n1-standard-4 --worker-boot-size-disk 50 --image-version 2.0-debian10
+- Crear un clúster nuevo: 
+   - $ gcloud dataproc clusters create example-cluster --enable-component-gateway --region europe-west6 --zone europe-west6-b --master-machine-type n1-standard-4 --master-boot-disk-size 50 --num-workers 2 --worker-machine-type n1-standard-4 --worker-boot-size-disk 50 --image-version 2.0-debian10
 - Una vez creado el cluster acceder a la máquina principal por SSH y ejecutar los siguientes comandos (para obtener información más detallada acceder a https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine)
     - Actualizar datos de apt e instalar wget y tasksel:
         - $ sudo apt update
