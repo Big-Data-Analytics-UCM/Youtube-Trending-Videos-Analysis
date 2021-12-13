@@ -6,19 +6,19 @@ El objetivo de este proyecto es obtener un análisis predictivo sobre un dataset
 
 ### Requisitos previos para configurar el proyecto
 
-Abrir una máquina virtual en cloud console y conectarse por SSH.
+* Abrir una máquina virtual en cloud console y conectarse por SSH.
 
-Introducir los siguientes comandos:
+* Introducir los siguientes comandos:
 
 `sudo apt update`
 
 `sudo apt install python3 python3-dev python3-venv`
 
-Instalar java:
+* Instalar java:
 
 `sudo apt install default-jre`
 
-Instalar Spark:
+* Instalar Spark:
 
 `curl -O https://ftp.cixug.es/apache/spark/spark-3.1.2/spark-3.1.2-bin-hadoop3.2.tgz`
 
@@ -30,13 +30,13 @@ Instalar Spark:
 
 `source ~/.profile`
 
-Instalar git y pip3: `sudo apt install git` , `sudo apt install pip3`
+* Instalar git y pip3: `sudo apt install git` , `sudo apt install pip3`
 
 `git clone <url repo>`
 
 `cd <your-project>`
 
-Crear y activar un entorno virtual
+* Crear y activar un entorno virtual
 
 `pip install venv`
     
@@ -51,14 +51,14 @@ _________________________
 
 `pip3 install google-cloud-storage`
 
-Instalar los paquetes requeridos para ejecutar el proyecto:
+* Instalar los paquetes requeridos para ejecutar el proyecto:
     
 `pip3 install -r requirements.txt`
 
 
 ## Contenido del proyecto
 
-
+FALTA
 
 
 ## Pasos adicionales para implementar el código en un Cluster de Google Cloud
