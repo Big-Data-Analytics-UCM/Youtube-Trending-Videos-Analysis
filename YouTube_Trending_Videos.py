@@ -64,8 +64,8 @@ def execute_menu_option(option):
         print('\nLas posibles regiones son:\n\tBR: Brasil\n\tCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,'
               '\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,'
               '\n\tUS: Estados Unidos')
-        pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
-    modo = str(input("Indique el modo en el que quiere ver el resultado, CONSOLA o GRAFICA:"))
+        pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): ")).upper()
+    modo = str(input("Indique el modo en el que quiere ver el resultado, CONSOLA o GRAFICA: ")).upper()
     path = actions[option]
     cmd = "spark-submit \"{PATH}\" -m {MODE} {COUNTRY}".format(PATH=path, MODE=modo, COUNTRY=pais)
     os.system(cmd)

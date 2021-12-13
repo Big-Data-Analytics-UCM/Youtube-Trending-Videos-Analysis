@@ -58,8 +58,8 @@ def consola_global(sql_context):
         # dataframes[country] = consola_pais(country, sql_context, True)
         categories_per_country_df = categories_per_country_df.append(consola_pais(country, sql_context, True),
                                                                      ignore_index=True)
+    categories_per_country_df.show()
 
-    print(categories_per_country_df)
 
 def grafica_pais(country, is_global):
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
@@ -81,7 +81,7 @@ def grafica_pais(country, is_global):
 def grafica_global():
     categories_per_country_df = pd.DataFrame()
     for country in countries:
-        categories_per_country_df = categories_per_country_df.append(grafica_pais(country, True), ignore_index = True)
+        categories_per_country_df = categories_per_country_df.append(grafica_pais(country, True), ignore_index=True)
 
     generar_grafica(categories_per_country_df, "GLOBAL")
 
