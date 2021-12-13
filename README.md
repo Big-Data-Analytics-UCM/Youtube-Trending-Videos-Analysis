@@ -7,7 +7,7 @@ Se incluyen datos para las regiones India, EE. UU., Gran Bretaña, Alemania, Can
 
 ### Requisitos previos para configurar el proyecto
 
-* Abrir una máquina virtual en cloud console y conectarse por SSH.
+* Abrir una terminal de Linux o una máquina virtual en Google Cloud Console y conectarse por SSH
 
 * Introducir los siguientes comandos:
 
@@ -57,11 +57,10 @@ _________________________
 `pip3 install -r requirements.txt`
 
 
-## Pasos adicionales para implementar el código en un Cluster de Google Cloud
-Abrir una Cloud Shell en la página de google cloud
-- Crear un clúster nuevo: 
-   - $ gcloud dataproc clusters create example-cluster --enable-component-gateway --region europe-west6 --zone europe-west6-b --master-machine-type n1-standard-4 --master-boot-disk-size 50 --num-workers 2 --worker-machine-type n1-standard-4 --worker-boot-size-disk 50 --image-version 2.0-debian10
-- Una vez creado el cluster acceder a la máquina principal por SSH y ejecutar los siguientes comandos (para obtener información más detallada acceder a https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine)
+## Pasos adicionales para ver los gráficos y tablas en la VM del Compute Engine de Google Cloud
+Para poder ver las gráficas y las tablas generadas, si estamos dentro de una máquina virtual de Google Cloud necesitamos 
+seguir los siguientes pasos:
+- Acceder a la máquina virtual por SSH y ejecutar los siguientes comandos (para obtener información más detallada acceder a https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine)
     - Actualizar datos de apt e instalar wget y tasksel:
         - $ sudo apt update
         - $ sudo apt install --assume-yes wget tasksel
@@ -69,7 +68,7 @@ Abrir una Cloud Shell en la página de google cloud
         - $ wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
         - $ sudo apt-get install --assume-yes ./chrome-remote-desktop_current_amd64.deb
     - Instalar en entorno de escritorio Xfce (los otros entornos no funcionan, da error de paquetes rotos al intentar instalarlos):
-        - $ sudo DEBIAN_FRONTEND=noninteractive \ apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver
+        - $ sudo DEBIAN_FRONTEND=noninteractive apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver
     - Configurar el escritorio remoto de Chrome para ejecutar Xfce de forma predeterminada:
         - $ sudo bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'
     - Inhabilitar el servicio de administrador de pantallas de la instancia actual
