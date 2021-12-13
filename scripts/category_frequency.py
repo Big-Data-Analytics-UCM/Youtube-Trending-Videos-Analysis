@@ -14,22 +14,22 @@ def category_frequency(region, mode):
     if mode == "CONSOLA" and region == "GLOBAL":
         consola_global(sql_context)
     elif mode == "CONSOLA" and region != "GLOBAL":
-        consola_pais(region, sql_context)
+        consola_pais(region, sql_context, False)
     elif mode == "GRAFICA" and region == "GLOBAL":
         grafica_global()
     else:
-        grafica_pais(region)
+        grafica_pais(region, False)
 
 
 def get_categories(country):
-    ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
+    # ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
     ruta_json = 'data/' + country + '_category_id.json'
 
-    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
-
-    df = df[['categoryId', 'view_count']]
-    mask = (df.view_count <= 0)
-    df = df.loc[~mask]
+    # df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
+    #
+    # df = df[['categoryId', 'view_count']]
+    # mask = (df.view_count <= 0)
+    # df = df.loc[~mask]
 
     with open(ruta_json) as json_file:
         data = json.load(json_file)
@@ -38,27 +38,57 @@ def get_categories(country):
             index = int(item['id'])
             category_dict[index] = item['snippet']['title']
 
-    df = df.replace({"categoryId": category_dict})
-    return df
+    # df = df.replace({"categoryId": category_dict})
+    return category_dict
 
 
-def consola_pais(country, sql_context):
-    pass
+def consola_pais(country, sql_context, is_global):
+    ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
+    df = sql_context.read.csv(ruta_csv, header=True, sep=',', encoding='utf-8')
+    categorias = df.groupBy("category_id").count()
+    category_dict = get_categories(country)
+
+    mapping_expr = create_map([lit(x) for x in chain(*category_dict.items())])
+    categorias = categorias.withColumn('category_id', mapping_expr[categorias['category_id']])
+    categorias = categorias.filter(categorias.category_id.isNotNull())
+    if is_global is not True:
+        categorias.show()
+    else:
+        return categorias
 
 
 def consola_global(sql_context):
-    pass
+    dataframes = dict()
+
+    for country in countries:
+        dataframes[country] = consola_pais(country, sql_context, True)
+
+    categories_per_country_df = dict()
+    for country in countries:
+        categories_per_country_df = categories_per_country_df.append(get_categories(country), ignore_index=True)
+
+    generar_grafica(categories_per_country_df, "GLOBAL")
 
 
-def grafica_pais(country):
-    category_df = get_categories(country)
-    generar_grafica(category_df, country)
+def grafica_pais(country, is_global):
+    ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
+
+    df = pd.read_csv(ruta_csv, engine='python', error_bad_lines=False)
+
+    df = df[['categoryId', 'view_count']]
+    mask = (df.view_count <= 0)
+    df = df.loc[~mask]
+
+    category_df = df.replace({"categoryId": get_categories(country)})
+    if is_global is not True:
+        generar_grafica(category_df, country)
 
 
 def grafica_global():
     categories_per_country_df = pd.DataFrame()
     for country in countries:
-        categories_per_country_df = categories_per_country_df.append(get_categories(country), ignore_index=True)
+        grafica_pais(country, True)
+        # categories_per_country_df = categories_per_country_df.append(get_categories(country), ignore_index=True)
 
     generar_grafica(categories_per_country_df, "GLOBAL")
 
@@ -72,6 +102,7 @@ def generar_grafica(df, region):
     plt.title("Video categories by relative frequency ")
     plt.savefig("outData/category_frequency_" + region + ".png", dpi=100)
     print("Gráfica guardada en outData/category_frecuency" + region + ".png")
+
 
 if __name__ == "__main__":
     # ARGUMENT PARSER
