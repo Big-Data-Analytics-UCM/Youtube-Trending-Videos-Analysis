@@ -4,6 +4,8 @@ import argparse
 
 PROJECT_PATH = os.getcwd()
 
+paises = ["GLOBAL" , "BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
+
 def argument_parser():
     parser = argparse.ArgumentParser(description='Conoce el algoritmo de YouTube y aumenta las probabilidades de'
                                      'conseguir que tu video se vuelva viral.', prog='YouTube_Trending_Videos')
@@ -27,7 +29,7 @@ def menu_options():
     options.update({'10': "Top 10 tags con más visualizaciones por país."})
     options.update({'0': "Exit"})
     return options
-
+ 
 
 def menu_actions():
     actions = dict()
@@ -58,6 +60,11 @@ def execute_menu_option(option):
         exit_program()
     actions = menu_actions()
     pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
+    while(pais not in paises):
+        print('\nLas posibles regiones son:\n\tBR: Brasil\n\tCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,' \
+                     '\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,' \
+                     '\n\tUS: Estados Unidos')
+        pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): "))
     path = actions[option]
     cmd = "python3 \"{PATH}\" -m graph {COUNTRY}".format(PATH=path, COUNTRY=pais)
     os.system(cmd)
