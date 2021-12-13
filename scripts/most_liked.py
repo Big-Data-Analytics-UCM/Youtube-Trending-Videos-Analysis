@@ -34,7 +34,7 @@ def get_table(region_df, region):
     table += "</body>\n"
     table += "</html>\n"
     # Writes the final HTML code
-    out_file = open("outData/most_liked_" + region + ".html", "w")
+    out_file = open("outData/most_liked_" + region + ".html", "w" ,  encoding="utf-8")
     out_file.write(table)
     out_file.close()
 
