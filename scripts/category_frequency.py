@@ -1,6 +1,8 @@
 import json
 import sys
 from pyspark import SparkConf, SparkContext, SQLContext
+from pyspark.sql.functions import col, create_map, lit
+from itertools import chain
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -45,29 +47,27 @@ def get_categories(country):
 def consola_pais(country, sql_context, is_global):
     ruta_csv = 'data/' + country + '_youtube_trending_data.csv'
     df = sql_context.read.csv(ruta_csv, header=True, sep=',', encoding='utf-8')
-    categorias = df.groupBy("category_id").count()
+    categorias = df.groupBy("categoryId").count()
     category_dict = get_categories(country)
 
     mapping_expr = create_map([lit(x) for x in chain(*category_dict.items())])
-    categorias = categorias.withColumn('category_id', mapping_expr[categorias['category_id']])
-    categorias = categorias.filter(categorias.category_id.isNotNull())
+    categorias = categorias.withColumn('categoryId', mapping_expr[categorias['categoryId']])
+    categorias = categorias.filter(categorias.categoryId.isNotNull())
     if is_global is not True:
-        categorias.show()
+        categorias.sort("count",ascending = False).show()
     else:
-        return categorias
+        return categorias.sort("count",ascending = False)
 
 
 def consola_global(sql_context):
-    dataframes = dict()
-
+    dataframe = pd.DataFrame()
     for country in countries:
-        dataframes[country] = consola_pais(country, sql_context, True)
+        dataframe = dataframe.append(consola_pais(country, sql_context, True), ignore_index = True)
+    
+    print(dataframe)
+    
 
-    categories_per_country_df = dict()
-    for country in countries:
-        categories_per_country_df = categories_per_country_df.append(get_categories(country), ignore_index=True)
-
-    generar_grafica(categories_per_country_df, "GLOBAL")
+    
 
 
 def grafica_pais(country, is_global):
@@ -82,13 +82,14 @@ def grafica_pais(country, is_global):
     category_df = df.replace({"categoryId": get_categories(country)})
     if is_global is not True:
         generar_grafica(category_df, country)
+    else:
+    	return category_df
 
 
 def grafica_global():
     categories_per_country_df = pd.DataFrame()
-    for country in countries:
-        grafica_pais(country, True)
-        # categories_per_country_df = categories_per_country_df.append(get_categories(country), ignore_index=True)
+    for country in countries:        
+        categories_per_country_df = categories_per_country_df.append(grafica_pais(country, True), ignore_index = True)
 
     generar_grafica(categories_per_country_df, "GLOBAL")
 
@@ -115,7 +116,7 @@ if __name__ == "__main__":
                        '\n\tUS: Estados Unidos'
     help_mode = 'Selecciona el modo de visualización: GRAFICO o CONSOLA; por defecto, CONSOLA'
     parser.add_argument("regionCode", help=help_region_code, default="GLOBAL")
-    parser.add_argument("-m", "--mode", help=help_mode, default="GRAFICO")
+    parser.add_argument("-m", "--mode", help=help_mode, default="GRAFICA")
     args = parser.parse_args()
     # END OF ARGUMENT PARSER
 
@@ -126,9 +127,8 @@ if __name__ == "__main__":
         print(help_region_code)
         sys.exit(0)
 
-    if mode not in ["CONSOLA", "GRAFICO", ""]:
+    if mode not in ["CONSOLA", "GRAFICA", ""]:
         print(help_mode)
         sys.exit(0)
 
     category_frequency(region, mode)
-
