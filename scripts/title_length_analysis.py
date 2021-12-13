@@ -31,8 +31,8 @@ def generar_grafica(df, country):
     plt.title('Número de apariciones según número de caracteres en el título',  fontsize=15)
     plt.xlabel('Número de caracteres en el título')
     plt.ylabel('Número de apariciones')
-    plt.savefig("outData/length_frequency_" + country + ".png", dpi=100)
-    print("Gráfica guardada en outData/published_at_frequency_" + country + ".png")
+    plt.savefig("outData/title_length_frequency_" + country + ".png", dpi=100)
+    print("Gráfica guardada en outData/title_length_frequency_" + country + ".png")
 
 
 def grafica_pais(country):
