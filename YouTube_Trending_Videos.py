@@ -6,6 +6,7 @@ import time
 PROJECT_PATH = os.getcwd()
 
 paises = ["GLOBAL", "BR", "CA", "DE", "FR", "GB", "IN", "JP", "KR", "MX", "RU", "US"]
+modos = ["CONSOLA", "GRAFICA"]
 
 def argument_parser():
     parser = argparse.ArgumentParser(description='Conoce el algoritmo de YouTube y aumenta las probabilidades de'
@@ -65,10 +66,16 @@ def execute_menu_option(option):
         print('\nLas posibles regiones son:\n\tBR: Brasil\n\tCA: Canadá,\n\tDE: Alemania,\n\tFR: Francia,'
               '\n\tGB: Reino Unido,\n\tIN: India,\n\tJP: Japón,\n\tKR: Korea,\n\tMX: México,\n\tRU: Rusia,'
               '\n\tUS: Estados Unidos')
-        pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): ")).upper()
-    modo = str(input("Indique el modo en el que quiere ver el resultado, CONSOLA o GRAFICA: ")).upper()
+        pais = str(input("Indique el código del país ('GLOBAL' para análisis mundial): ")).upper()    
+    
+    if option == '1':
+        modo = str(input("Indique el modo en el que quiere ver el resultado, CONSOLA o GRAFICA: ")).upper()
+        while modo not in modos:
+    	    modo = str(input("Indique el modo en el que quiere ver el resultado, CONSOLA o GRAFICA: ")).upper() 
+    else:
+    	modo = "GRAFICA" 
     path = actions[option]
-    cmd = "spark-submit \"{PATH}\" -m {MODE} {COUNTRY}".format(PATH=path, MODE=modo, COUNTRY=pais)
+    cmd = "spark-submit \"{PATH}\" -m {MODO} {COUNTRY}".format(PATH=path, MODO=modo, COUNTRY=pais)
     inicio = time.time()
     os.system(cmd)
     fin = time.time()
