@@ -1,7 +1,12 @@
-# Proyecto_Cloud
+# Análisis predictivo de tendencias virales en vídeos de Youtube.
 Proyecto Final de la asignatura Optativa Cloud y Big Data - Facultad de Informática UCM 2021/22 
 
-###Cómo configurarlo
+## Requisitos
+
+
+## Contenido del proyecto
+
+### Cómo configurar el proyecto
 abrir una vm en el cloud console y conectarse por ssh
 - sudo apt update
 - sudo apt install python3 python3-dev python3-venv
@@ -18,7 +23,7 @@ abrir una vm en el cloud console y conectarse por ssh
 - install required packages:
     - pip3 install -r requirements.txt
 
-###Pasos adicionales para implementar el código en un Cluster de Google Cloud
+### Pasos adicionales para implementar el código en un Cluster de Google Cloud
 Abrir una Cloud Shell en la página de google cloud
 - crear un clúster nuevo: $ gcloud dataproc clusters create example-cluster --enable-component-gateway --region europe-west6 --zone europe-west6-b --master-machine-type n1-standard-4 --master-boot-disk-size 50 --num-workers 2 --worker-machine-type n1-standard-4 --worker-boot-size-disk 50 --image-version 2.0-debian10
 - Una vez creado el cluster acceder a la máquina principal por SSH y ejecutar los siguientes comandos (para obtener información más detallada acceder a https://cloud.google.com/architecture/chrome-desktop-remote-on-compute-engine)
@@ -47,4 +52,20 @@ Abrir una Cloud Shell en la página de google cloud
 - Confirmar que el servicio de escritorio remoto está en ejecución:
     - $ sudo systemctl status chrome-remote-desktop@$USER
 
-listo
+## Más Información
+    
+    Se puede encontrar más información referente a nuestro proyecto en nuestra página web:
+        * https://big-data-analytics-ucm.github.io/Youtube-Trending-Videos-Analysis/# ç
+    
+    O en el github:
+        * https://github.com/Big-Data-Analytics-UCM/Youtube-Trending-Videos-Analysis 
+    
+    Este proyecto ha sido desarrollado por:
+        * Lluc Bonet Seguí
+        * Álvaro Plaza Sanz
+        * Marcos Matute Fernández
+        * Sergio Crespillo Campos
+        * Camilo Andres D’isidoro
+
+    
+    
