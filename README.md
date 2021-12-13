@@ -60,6 +60,7 @@ Instalar los paquetes requeridos para ejecutar el proyecto:
 
 
 
+
 ## Pasos adicionales para implementar el código en un Cluster de Google Cloud
 Abrir una Cloud Shell en la página de google cloud
 - crear un clúster nuevo: $ gcloud dataproc clusters create example-cluster --enable-component-gateway --region europe-west6 --zone europe-west6-b --master-machine-type n1-standard-4 --master-boot-disk-size 50 --num-workers 2 --worker-machine-type n1-standard-4 --worker-boot-size-disk 50 --image-version 2.0-debian10
@@ -96,6 +97,9 @@ Se puede encontrar más información referente a nuestro proyecto en nuestra pá
     
 O en el github:
     https://github.com/Big-Data-Analytics-UCM/Youtube-Trending-Videos-Analysis 
+    
+Los datasets utilizados para el análisis pueden ser descargados desde el siguiente enlace:
+    [YoutubeAnalisis.csv](https://www.kaggle.com/rsrishav/youtube-trending-video-dataset) 
     
     
     Este proyecto ha sido desarrollado por:
