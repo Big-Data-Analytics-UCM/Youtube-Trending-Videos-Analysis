@@ -11,9 +11,6 @@ modos = ["CONSOLA", "GRAFICA"]
 def argument_parser():
 	parser = argparse.ArgumentParser(description='Conoce el algoritmo de YouTube y aumenta las probabilidades de'
 									 'conseguir que tu video se vuelva viral.', prog='YouTube_Trending_Videos')
-	# parser.add_argument('--region', help='Regions: IN (India), US (EEUU), GB (Gran Bretaña),DE (Alemania), '
-	#                                     'CA (Canadá), FR (Francia), RU (Rusia), BR (Brasil), MX (Mexico), KR (Korea) '
-	#                                     'y JP (Japón)', default="ALL")
 	return parser.parse_args()
 
 
@@ -112,7 +109,6 @@ if __name__ == "__main__":
 			 |__|  |________|  |________|  |__|  |________|  |________|  |________|
 	"""
 	args = argument_parser()
-	# os.system("python3 liveData.py {COUNTRY}".format(COUNTRY=args.regionCode.upper()))
 	print(welcome)
 	options_dict = menu_options()
 	while menu(options_dict):
